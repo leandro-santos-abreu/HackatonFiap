@@ -1,6 +1,7 @@
 ﻿using HealthMed.Application.Contracts;
 using HealthMed.Application.Services;
 using HealthMed.Domain.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMed.Presentation.Controllers;
@@ -10,6 +11,7 @@ namespace HealthMed.Presentation.Controllers;
 public class AgendaController(IAgendaServices agendaServices) : ControllerBase
 {
     [HttpGet()]
+    [Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> Get()
     {
         var result = await agendaServices.Get();
@@ -17,6 +19,7 @@ public class AgendaController(IAgendaServices agendaServices) : ControllerBase
     }
 
     [HttpGet("id")]
+    [Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyId(int id)
     {
         var result = await agendaServices.GetById(id);
@@ -24,6 +27,7 @@ public class AgendaController(IAgendaServices agendaServices) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "medico")]
     public async Task<IActionResult> CreateAgenda([FromBody] AgendaEntity agenda)
     {
         if (agenda == null)
@@ -38,6 +42,7 @@ public class AgendaController(IAgendaServices agendaServices) : ControllerBase
     }
 
     [HttpPut()]
+    [Authorize(Roles = "medico")]
     public IActionResult UpdateAgenda([FromBody] AgendaEntity updatedagenda)
     {
         if (updatedagenda == null)
@@ -59,6 +64,7 @@ public class AgendaController(IAgendaServices agendaServices) : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "medico")]
     public async Task<IActionResult> DeleteAgenda(int id)
     {
         var existingMedico = agendaServices.GetById(id);

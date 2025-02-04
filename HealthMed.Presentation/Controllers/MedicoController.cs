@@ -1,6 +1,7 @@
 ﻿using HealthMed.Application.Contracts;
 using HealthMed.Data;
 using HealthMed.Domain.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,6 +12,7 @@ namespace HealthMed.Presentation.Controllers;
 public class MedicoController(IMedicoServices medicoServices) : ControllerBase
 {
     [HttpGet()]
+    [Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> Get()
     {
         var result = await medicoServices.Get();
@@ -18,6 +20,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpGet("id")]
+    [Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyId(int id)
     {
         var result = await medicoServices.GetById(id);
@@ -25,6 +28,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpGet("Nome")]
+    [Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyNome(string Nome)
     {
         var result = await medicoServices.GetByNome(Nome);
@@ -32,6 +36,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpGet("CRM")]
+    [Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyCRM(string CRM)
     {
         var result = await medicoServices.GetByCRM(CRM);
@@ -39,6 +44,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "medico")]
     public async Task<IActionResult> CreateMedico([FromBody] MedicoEntity medico)
     {
         if (medico == null)
@@ -53,6 +59,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpPut()]
+    [Authorize(Roles = "medico")]
     public IActionResult UpdateMedico([FromBody] MedicoEntity updatedmedico)
     {
         if (updatedmedico == null)
@@ -74,6 +81,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "medico")]
     public async Task<IActionResult> DeleteMedico(int id)
     {
         var existingMedico = medicoServices.GetById(id);

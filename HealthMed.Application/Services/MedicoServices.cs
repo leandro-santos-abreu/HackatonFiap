@@ -9,8 +9,17 @@ public class MedicoServices(IMedicoRepository medicoRepository) : IMedicoService
 {
     public async Task<bool> Create(MedicoEntity medico)
     {
-        var result = await medicoRepository.Create(medico);
-        return result;
+        try
+        {            
+            medico.Senha = BCrypt.Net.BCrypt.HashPassword(medico.Senha);
+
+            return await medicoRepository.Create(medico);
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+       
     }
 
     public async Task<bool> Delete(int id)
@@ -45,7 +54,16 @@ public class MedicoServices(IMedicoRepository medicoRepository) : IMedicoService
 
     public bool Update(MedicoEntity updatedMedico)
     {
-        var result = medicoRepository.Update(updatedMedico);
-        return result;
+        try
+        {
+            updatedMedico.Senha = BCrypt.Net.BCrypt.HashPassword(updatedMedico.Senha);
+
+            return medicoRepository.Update(updatedMedico);
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+       
     }
 }

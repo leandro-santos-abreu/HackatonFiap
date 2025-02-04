@@ -176,3 +176,7 @@ F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\obj\Debug\net8.0\Healt
 F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\obj\Debug\net8.0\ref\HealthMed.Presentation.dll
 F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\bin\Debug\net8.0\Castle.Core.dll
 F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
+F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\obj\Debug\net8.0\HealthMed.Presentation.sourcelink.json
+F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\bin\Debug\net8.0\BCrypt.Net.dll
+F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\FiapProjects\HealthMed_Hackaton\HealthMed.Presentation\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll

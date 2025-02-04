@@ -1,6 +1,7 @@
 ﻿using HealthMed.Application.Contracts;
 using HealthMed.Application.Services;
 using HealthMed.Domain.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMed.Presentation.Controllers;
@@ -9,6 +10,7 @@ namespace HealthMed.Presentation.Controllers;
 [Route("[controller]")]
 public class PacienteController(IPacienteServices pacienteServices) : ControllerBase
 {
+    [Authorize(Roles = "paciente")]
     [HttpGet()]
     public async Task<IActionResult> Get()
     {
@@ -16,6 +18,7 @@ public class PacienteController(IPacienteServices pacienteServices) : Controller
         return Ok(result);
     }
 
+    [Authorize(Roles = "paciente")]
     [HttpGet("id")]
     public async Task<IActionResult> GetbyId(int id)
     {
@@ -23,6 +26,7 @@ public class PacienteController(IPacienteServices pacienteServices) : Controller
         return Ok(result);
     }
 
+    [Authorize(Roles = "paciente")]
     [HttpPost]
     public async Task<IActionResult> CreatePaciente([FromBody] PacienteEntity paciente)
     {
@@ -37,6 +41,7 @@ public class PacienteController(IPacienteServices pacienteServices) : Controller
 
     }
 
+    [Authorize(Roles = "paciente")]
     [HttpPut()]
     public IActionResult UpdatePaciente([FromBody] PacienteEntity updatedpaciente)
     {
@@ -58,6 +63,7 @@ public class PacienteController(IPacienteServices pacienteServices) : Controller
         return NoContent();
     }
 
+    [Authorize(Roles = "paciente")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePaciente(int id)
     {

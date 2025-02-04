@@ -19,3 +19,4 @@ F:\FiapProjects\HealthMed_Hackaton\HealthMed.Application\obj\Debug\net8.0\refint
 F:\FiapProjects\HealthMed_Hackaton\HealthMed.Application\obj\Debug\net8.0\HealthMed.Application.pdb
 F:\FiapProjects\HealthMed_Hackaton\HealthMed.Application\obj\Debug\net8.0\HealthMed.Application.genruntimeconfig.cache
 F:\FiapProjects\HealthMed_Hackaton\HealthMed.Application\obj\Debug\net8.0\ref\HealthMed.Application.dll
+F:\FiapProjects\HealthMed_Hackaton\HealthMed.Application\obj\Debug\net8.0\HealthMed.Application.sourcelink.json

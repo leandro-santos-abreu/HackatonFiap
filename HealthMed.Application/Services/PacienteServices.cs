@@ -5,35 +5,52 @@ using HealthMed.Persistence.Repository;
 
 
 namespace HealthMed.Application.Services;
-public class PacienteServices(IPacienteRepository medicoRepository) : IPacienteServices
+public class PacienteServices(IPacienteRepository pacienteRepository) : IPacienteServices
 {
     public async Task<bool> Create(PacienteEntity paciente)
     {
-        var result = await medicoRepository.Create(paciente);
-        return result;
+        try
+        {
+            paciente.Senha = BCrypt.Net.BCrypt.HashPassword(paciente.Senha);
+
+            return await pacienteRepository.Create(paciente);
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+        
     }
 
     public async Task<bool> Delete(int id)
     {
-        var result = await medicoRepository.Delete(id);
+        var result = await pacienteRepository.Delete(id);
         return result;
     }
 
     public async Task<IEnumerable<PacienteEntity>> Get()
     {
-        var result = await medicoRepository.Get();
+        var result = await pacienteRepository.Get();
         return result;
     }   
 
     public async Task<PacienteEntity> GetById(int id)
     {
-        var result = await medicoRepository.GetById(id);
+        var result = await pacienteRepository.GetById(id);
         return result;
     }
 
-    public bool Update(PacienteEntity updatedMedico)
+    public bool Update(PacienteEntity updatedPaciente)
     {
-        var result = medicoRepository.Update(updatedMedico);
-        return result;
+        try
+        {
+            updatedPaciente.Senha = BCrypt.Net.BCrypt.HashPassword(updatedPaciente.Senha);
+
+            return pacienteRepository.Update(updatedPaciente);
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }       
     }
 }
