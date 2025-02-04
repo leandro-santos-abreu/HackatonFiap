@@ -1,7 +1,6 @@
 ﻿using HealthMed.Application.Contracts;
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
-using HealthMed.Persistence.Repository;
 
 
 namespace HealthMed.Application.Services;
@@ -31,9 +30,9 @@ public class AgendaServices(IAgendaRepository medicoRepository) : IAgendaService
         return result;
     }
 
-    public bool Update(AgendaEntity updatedMedico)
+    public async Task<bool> Update(AgendaEntity updatedMedico)
     {
-        var result = medicoRepository.Update(updatedMedico);
+        var result = await medicoRepository.Update(updatedMedico);
         return result;
     }
 }
