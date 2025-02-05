@@ -24,12 +24,12 @@ jobs:
         run: dotnet build HealthMed_Hackaton.sln --configuration Release
 
       - name: dotnet publish HealthMed-API
-        run: dotnet publish ./HealthMed.Presentation/HealthMed.Presentation.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ./HealthMed.Presentation/HealthMed.Presentation.csproj -c Release -o ${{env.DOTNET_ROOT}}/api
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: .net-app
+          name: HealthMed-API
           path: ${{env.DOTNET_ROOT}}/api
           
   Build-Agendamentos:
@@ -49,12 +49,12 @@ jobs:
         run: dotnet build HealthMed_Hackaton.sln --configuration Release
 
       - name: dotnet publish HealthMed-Agendamentos
-        run: dotnet publish ./WebJobs/Agendamentos/Agendamentos.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ./WebJobs/Agendamentos/Agendamentos.csproj -c Release -o ${{env.DOTNET_ROOT}}/agendamentos
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: .net-app
+          name: HealthMed-Agendamentos
           path: ${{env.DOTNET_ROOT}}/agendamentos
           
 
@@ -72,7 +72,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: .net-app
+          name: HealthMed-API
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -103,7 +103,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: .net-app
+          name: HealthMed-Agendamentos
       
       - name: Login to Azure
         uses: azure/login@v2
