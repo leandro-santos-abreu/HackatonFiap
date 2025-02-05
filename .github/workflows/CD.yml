@@ -49,7 +49,7 @@ jobs:
         run: dotnet build HealthMed_Hackaton.sln --configuration Release
 
       - name: dotnet publish HealthMed-Agendamentos
-        run: dotnet publish ./WebJobs/Agendamentos/Agendamentos.csproj -c Release -o ${{env.DOTNET_ROOT}}/agendamentos
+        run: dotnet publish ./WebJobs/HealthMed.Agendamentos/Agendamentos.csproj -c Release -o ${{env.DOTNET_ROOT}}/agendamentos
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
