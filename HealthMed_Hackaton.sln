@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMed.Notificacoes", "W
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A46C38A4-F338-47E3-B7E7-9D85818DB3A5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{072F9D1E-DDD2-4E00-93DB-DF642EFF447E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthMed.Tests", "HealthMed.Tests\HealthMed.Tests.csproj", "{1518AB2A-0D86-4765-BEBA-4DB7D0A4B783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{A46C38A4-F338-47E3-B7E7-9D85818DB3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46C38A4-F338-47E3-B7E7-9D85818DB3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46C38A4-F338-47E3-B7E7-9D85818DB3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1518AB2A-0D86-4765-BEBA-4DB7D0A4B783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1518AB2A-0D86-4765-BEBA-4DB7D0A4B783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1518AB2A-0D86-4765-BEBA-4DB7D0A4B783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1518AB2A-0D86-4765-BEBA-4DB7D0A4B783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +82,7 @@ Global
 		{8828AFA4-22F8-4647-A81A-2A4425F2DEFE} = {FFA76882-2886-4F5B-99C6-091C528FCD00}
 		{42C6D5EE-4444-4D60-B405-91BB24868FAC} = {8828AFA4-22F8-4647-A81A-2A4425F2DEFE}
 		{3AE18F0B-46EE-4CE3-9100-4E60FDC6FF66} = {8828AFA4-22F8-4647-A81A-2A4425F2DEFE}
+		{1518AB2A-0D86-4765-BEBA-4DB7D0A4B783} = {072F9D1E-DDD2-4E00-93DB-DF642EFF447E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B323996-97C6-41D4-9C62-6450CD5C4FE4}
