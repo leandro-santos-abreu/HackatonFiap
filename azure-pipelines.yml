@@ -1,0 +1,90 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+pr:
+ branches:
+  include:
+    - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+jobs:
+- job: Build_Tests
+  timeoutInMinutes: 20
+  pool:
+    vmImage: ubuntu-latest
+
+  services:
+    sqlserver:
+      image: mcr.microsoft.com/mssql/server:2019-CU27-ubuntu-20.04
+      env:
+        SA_PASSWORD: "YourStrong!Passw0rd"
+        ACCEPT_EULA: "Y"
+      ports:
+        - 1433:1433
+      options: >
+        --health-cmd "opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P 'YourStrong!Passw0rd' -Q 'SELECT 1' || exit 1"
+        --health-interval 10s
+        --health-start-period 30s
+        --health-timeout 5s
+        --health-retries 3
+
+    rabbitmq:
+      image: masstransit/rabbitmq
+      ports:
+        - 5672:5672
+        - 15672:15672
+      options: >
+        --privileged
+        --health-cmd "curl -f http://localhost:15672 || exit 1"
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
+
+  steps:
+  - checkout: self
+
+  - task: UseDotNet@2
+    displayName: "Setup .NET"
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.x'
+
+  - script: dotnet restore PosTechFiap.sln
+    displayName: "Restore dependencies"
+
+  - script: dotnet build PosTechFiap.sln --no-restore
+    displayName: "Build"
+
+  - script: |
+      sudo systemctl start docker
+      sudo systemctl status docker
+    displayName: "Ensure Docker is running"
+
+  - task: FileTransform@1
+    displayName: "App Settings Variable Substitution"
+    inputs:
+      folderPath: '$(Build.SourcesDirectory)'
+      fileType: 'json'
+      targetFiles: '**/appsettings.Test.json'
+
+  - script: dotnet test PosTechFiap.sln --no-build --verbosity normal
+    displayName: "Run tests"
+
+  - script: docker ps -a
+    displayName: "List all Docker containers after tests"
+
+  - script: |
+      for container in $(docker ps -a -q); do
+        echo "Logs for container $container:"
+        docker logs $container
+      done
+    displayName: "Get logs of all Docker containers"
