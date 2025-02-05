@@ -1,0 +1,20 @@
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - task: DownloadBuildArtifacts@1
+    inputs:
+      buildType: 'specific'
+      project: '9c6b5eea-0752-4f91-bd26-f3a4181f95b6'
+      pipeline: '4'
+      buildVersionToDownload: 'latest'
+      downloadType: 'specific'
+      artifactName: 'healthmedartifact'
+      downloadPath: '$(Build.ArtifactsDirectory)'
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'Azure subscription 1(b1853c22-d2e1-46fe-836d-2394a79e8380)'
+      appType: 'webAppLinux'
+      appName: 'HealthMed-API'
+      package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+      deploymentMethod: auto
