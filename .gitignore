@@ -1,4 +1,6 @@
 .env
 .vs/
-/bin/
-/obj/
+**/bin/
+**/obj/
+*.dbmdl
+*.jfm
