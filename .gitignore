@@ -1,4 +1,14 @@
-.env
+# Ignore Visual Studio files
 .vs/
-/bin/
-/obj/
+*.suo
+*.user
+*.vcxproj*
+*.db
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+
+# Ignore build outputs
+bin/
+obj/
