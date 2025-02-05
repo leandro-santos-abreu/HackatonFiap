@@ -60,7 +60,7 @@ jobs:
 
   Deploy-API:
     runs-on: ubuntu-latest
-    needs: build
+    needs: Build-Api
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -91,7 +91,7 @@ jobs:
     
   Deploy-Agendamentos:
     runs-on: ubuntu-latest
-    needs: build
+    needs: Build-Agendamentos
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
