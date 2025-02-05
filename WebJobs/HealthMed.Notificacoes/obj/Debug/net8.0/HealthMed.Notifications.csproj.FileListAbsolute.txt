@@ -1,0 +1,6 @@
+F:\HackatonFiap\WebJobs\HealthMed.Notifications\obj\Debug\net8.0\HealthMed.Notifications.csproj.AssemblyReference.cache
+F:\HackatonFiap\WebJobs\HealthMed.Notifications\obj\Debug\net8.0\HealthMed.Notifications.GeneratedMSBuildEditorConfig.editorconfig
+F:\HackatonFiap\WebJobs\HealthMed.Notifications\obj\Debug\net8.0\HealthMed.Notifications.AssemblyInfoInputs.cache
+F:\HackatonFiap\WebJobs\HealthMed.Notifications\obj\Debug\net8.0\HealthMed.Notifications.AssemblyInfo.cs
+F:\HackatonFiap\WebJobs\HealthMed.Notifications\obj\Debug\net8.0\HealthMed.Notifications.csproj.CoreCompileInputs.cache
+F:\HackatonFiap\WebJobs\HealthMed.Notifications\obj\Debug\net8.0\HealthMed.Notifications.sourcelink.json

@@ -49,15 +49,17 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     }
 
 
-    public bool Update(AgendaEntity updatedAgenda)
+    public async Task<bool> Update(AgendaEntity updatedAgenda)
     {               
         try
         {
             db.Agenda.Update(updatedAgenda);
             db.SaveChanges();
+
+            await Task.Delay(1);
             return true;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
