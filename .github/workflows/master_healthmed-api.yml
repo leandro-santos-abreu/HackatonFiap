@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build HealthMed_Hackaton.sln --configuration Release
 
       - name: dotnet publish
         run: dotnet publish ./HealthMed.Presentation/HealthMed.Presentation.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
