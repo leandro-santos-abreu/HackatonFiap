@@ -11,11 +11,10 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("dotnet-HealthMed.Notifications-dff0c830-35d8-4b54-9a35-f42e48e68d97")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("HealthMed.Notificacoes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bc8fcc91855c9f04599038f81f3b54bd111af0b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e9587839870b26131c821abe8cfdba8deb12e86")]
 [assembly: System.Reflection.AssemblyProductAttribute("HealthMed.Notificacoes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HealthMed.Notificacoes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
