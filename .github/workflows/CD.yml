@@ -23,13 +23,13 @@ jobs:
       - name: Build with dotnet
         run: dotnet build HealthMed_Hackaton.sln --configuration Release
 
-      - name: dotnet publish HealthMed-API
+      - name: dotnet publish HealthMedApi
         run: dotnet publish ./HealthMed.Presentation/HealthMed.Presentation.csproj -c Release -o ${{env.DOTNET_ROOT}}/api
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: HealthMed-API
+          name: HealthMedApi
           path: ${{env.DOTNET_ROOT}}/api
           
   Build-Agendamentos:
@@ -97,20 +97,20 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: HealthMed-API
+          name: HealthMedApi
       
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CD587F61CF514513841AFCB1DF9FED79 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_633E5470359743BAAF5D3CCDE57984D6 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5BD4B977096748599FDFD431D8CE5D15 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CCCD89B451B743B481D693E14367A27D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_806D1E414584458F890E5A5CBDDBD8C3 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FD33295752584B23A1BD3AAF6BF0ED46 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'HealthMed-API'
+          app-name: 'HealthMedApi'
           slot-name: 'Production'
           package: .
     
