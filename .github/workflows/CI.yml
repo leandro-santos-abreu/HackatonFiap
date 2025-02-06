@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  Build_Tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+          sqlserver:
+            image: mcr.microsoft.com/mssql/server:2019-CU27-ubuntu-20.04
+            env:
+              SA_PASSWORD: "YourStrong!Passw0rd"
+              ACCEPT_EULA: "Y"
+            ports:
+              - 1433:1433
+            options: >-
+              --health-cmd "opt/mssql-tools/bin/sqlcmd -S 172.18.0.2 -U SA -P 'YourStrong!Passw0rd' -Q 'SELECT 1' || exit 1"
+              --health-interval 10s
+              --health-start-period 30s
+              --health-timeout 5s
+              --health-retries 3
+          rabbitmq:
+            image: masstransit/rabbitmq
+            ports:
+               - 5672:5672
+               - 15672:15672
+            options: >-
+              --privileged
+              --health-cmd "curl -f http://localhost:15672 || exit 1"
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore HealthMed_Hackaton.sln
+
+    - name: Build
+      run: dotnet build HealthMed_Hackaton.sln --no-restore
+
+    - name: Ensure Docker is running
+      run: |
+        sudo systemctl start docker
+        sudo systemctl status docker
+
+    - name: App Settings Variable Substitution
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: '**/appsettings.Test.json'
+      env:
+        Settings.RunningCI: true
+        
+    - name: Run tests
+      run: dotnet test HealthMed_Hackaton.sln --no-build --verbosity normal
+
+    - name: List all Docker containers after tests
+      run: docker ps -a
+
+    - name: Get logs of all Docker containers
+      run: |
+        for container in $(docker ps -a -q); do
+          echo "Logs for container $container:"
+          docker logs $container
+        done
+

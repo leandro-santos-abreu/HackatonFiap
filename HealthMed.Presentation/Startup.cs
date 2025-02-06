@@ -58,20 +58,19 @@ namespace HealthMed.Presentation
                 });
             });
 
-
-            services.AddScoped<HealthMedContext>();
-
-            services.AddScoped<IMedicoServices, MedicoServices>();
-            services.AddScoped<IMedicoRepository, MedicoRepository>();
-            services.AddScoped<IPacienteServices, PacienteServices>();
-            services.AddScoped<IPacienteRepository, PacienteRepository>();
-            services.AddScoped<IAgendaServices, AgendaServices>();
-            services.AddScoped<IAgendaRepository, AgendaRepository>();
-            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
-            services.AddScoped<IAutenticationRepository, AutenticationRepository>();
-
             services.AddDbContext<HealthMedContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("HealthMedConnection")));
+
+            services.AddScoped<IMedicoRepository, MedicoRepository>();
+            services.AddScoped<IPacienteRepository, PacienteRepository>();
+            services.AddScoped<IAgendaRepository, AgendaRepository>();
+            services.AddScoped<IAutenticationRepository, AutenticationRepository>();
+
+            services.AddScoped<IMedicoServices, MedicoServices>();
+            services.AddScoped<IPacienteServices, PacienteServices>();
+            services.AddScoped<IAgendaServices, AgendaServices>();
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+
 
             // Configuração da autenticação JWT
             var secretKey = Configuration["Jwt:Key"];
