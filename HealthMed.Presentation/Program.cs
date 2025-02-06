@@ -26,19 +26,19 @@ public class Program
             })
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                if (Ambiente != "Production")
-                {
-                    webBuilder.ConfigureKestrel(serverOptions =>
-                    {
-                        serverOptions.ListenAnyIP(8080);  // HTTP port
-                        serverOptions.ListenAnyIP(8443, listenOptions =>  // HTTPS port
-                        {
-                            var certPath = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Path");
-                            var certPassword = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Password");
-                            listenOptions.UseHttps(certPath!, certPassword);
-                        });
-                    });
-                }
+                //if (Ambiente != "Production")
+                //{
+                //    webBuilder.ConfigureKestrel(serverOptions =>
+                //    {
+                //        serverOptions.ListenAnyIP(8080);  // HTTP port
+                //        serverOptions.ListenAnyIP(8443, listenOptions =>  // HTTPS port
+                //        {
+                //            var certPath = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Path");
+                //            var certPassword = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Password");
+                //            listenOptions.UseHttps(certPath!, certPassword);
+                //        });
+                //    });
+                //}
 
                 webBuilder.UseStartup<Startup>();
             });
