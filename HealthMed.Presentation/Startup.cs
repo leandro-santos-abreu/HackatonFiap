@@ -73,7 +73,7 @@ namespace HealthMed.Presentation
 
 
             // Configuração da autenticação JWT
-            var secretKey = Configuration["Jwt:Key"];
+            var secretKey = Configuration.GetSection("Jwt")["Key"] ?? string.Empty;
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
