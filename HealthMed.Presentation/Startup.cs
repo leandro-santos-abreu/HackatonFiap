@@ -58,8 +58,8 @@ namespace HealthMed.Presentation
                 });
             });
 
-
-            services.AddScoped<HealthMedContext>();
+            services.AddDbContext<HealthMedContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("HealthMedConnection")));
 
             services.AddScoped<IMedicoRepository, MedicoRepository>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
@@ -71,9 +71,6 @@ namespace HealthMed.Presentation
             services.AddScoped<IAgendaServices, AgendaServices>();
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
 
-
-            services.AddDbContext<HealthMedContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("HealthMedConnection")));
 
             // Configuração da autenticação JWT
             var secretKey = Configuration["Jwt:Key"];
