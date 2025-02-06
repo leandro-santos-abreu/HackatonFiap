@@ -21,12 +21,12 @@ public class MedicoEntity
     [CrmValidation(ErrorMessage = "CRM inválido. Formato esperado: UF + número (Ex: SP123456).")]
     public string CRM { get; set; }
     
-    [Required]
-    [EmailAddress(ErrorMessage = "E-mail inválido.")]
+    [Required , EmailAddress(ErrorMessage = "E-mail inválido.")]
     public string Email { get; set; }
     
     [Required] 
     public string Senha { get; set; }
-   
+
+    public List<AgendaEntity> Agendas { get; set; } = new();
     //public virtual ICollection<AgendaEntity> Agendas { get; set; }
 }

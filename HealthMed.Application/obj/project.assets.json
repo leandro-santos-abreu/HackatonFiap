@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "AutoMapper/13.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Azure.Core/1.38.0": {
         "type": "package",
         "dependencies": {
@@ -1734,6 +1750,21 @@
     }
   },
   "libraries": {
+    "AutoMapper/13.0.1": {
+      "sha512": "/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "type": "package",
+      "path": "automapper/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.13.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net6.0/AutoMapper.dll",
+        "lib/net6.0/AutoMapper.xml"
+      ]
+    },
     "Azure.Core/1.38.0": {
       "sha512": "IuEgCoVA0ef7E4pQtpC3+TkPbzaoQfa77HlfJDmfuaJUCVJmn7fT0izamZiryW5sYUFKizsftIxMkXKbgIcPMQ==",
       "type": "package",
@@ -4948,6 +4979,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AutoMapper >= 13.0.1",
       "HealthMed.Domain >= 1.0.0",
       "HealthMed.Persistence >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.1",
@@ -4957,42 +4989,43 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Outsider\\.nuget\\packages\\": {},
-    "F:\\VSSdks\\NuGetPackages": {}
+    "C:\\Users\\caio_\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj",
+      "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj",
       "projectName": "HealthMed.Application",
-      "projectPath": "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj",
-      "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
-      "outputPath": "F:\\HackatonFiap\\HealthMed.Application\\obj\\",
+      "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj",
+      "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
+      "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "F:\\VSSdks\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
-              "projectPath": "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj"
+            "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+              "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj"
             },
-            "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
-              "projectPath": "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj"
+            "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
+              "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj"
             }
           }
         }
@@ -5006,13 +5039,16 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.1, )"
@@ -5048,7 +5084,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -5057,7 +5093,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'BCrypt.Net 0.1.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net8.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
       "libraryId": "BCrypt.Net",
       "targetGraphs": [
         "net8.0"

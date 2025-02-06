@@ -2,6 +2,7 @@
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace HealthMed.Persistence.Repository;
@@ -57,7 +58,7 @@ public class MedicoRepository(HealthMedContext db) : IMedicoRepository
         }
 
         return entity;
-    }  
+    }
 
     public async Task<MedicoEntity> GetByNome(string Nome)
     {
@@ -71,8 +72,8 @@ public class MedicoRepository(HealthMedContext db) : IMedicoRepository
     }
 
     public bool Update(MedicoEntity updatedMedico)
-    {       
-        
+    {
+
         try
         {
             db.Medico.Update(updatedMedico);

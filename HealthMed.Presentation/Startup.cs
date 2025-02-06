@@ -67,6 +67,8 @@ namespace HealthMed.Presentation
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddScoped<IAgendaServices, AgendaServices>();
             services.AddScoped<IAgendaRepository, AgendaRepository>();
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
 
             services.AddDbContext<HealthMedContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("HealthMedConnection")));

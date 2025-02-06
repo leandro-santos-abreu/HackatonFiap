@@ -3,5 +3,5 @@
 namespace HealthMed.Application.Contracts;
 public interface IAuthenticationServices
 {
-    string Login(string usuario, string senha);
+    string Login(string TipoDoc, string usuario, string senha);
 }

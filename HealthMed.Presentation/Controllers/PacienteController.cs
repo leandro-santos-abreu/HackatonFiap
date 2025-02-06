@@ -1,5 +1,7 @@
-﻿using HealthMed.Application.Contracts;
+﻿using AutoMapper;
+using HealthMed.Application.Contracts;
 using HealthMed.Application.Services;
+using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,49 +10,59 @@ namespace HealthMed.Presentation.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PacienteController(IPacienteServices pacienteServices) : ControllerBase
+public class PacienteController(IPacienteServices pacienteServices, IMapper _mapper) : ControllerBase
 {
-    [Authorize(Roles = "paciente")]
     [HttpGet()]
+    //[Authorize(Roles = "paciente")]
     public async Task<IActionResult> Get()
     {
         var result = await pacienteServices.Get();
         return Ok(result);
     }
 
-    [Authorize(Roles = "paciente")]
     [HttpGet("id")]
+    //[Authorize(Roles = "paciente")]
     public async Task<IActionResult> GetbyId(int id)
     {
         var result = await pacienteServices.GetById(id);
         return Ok(result);
     }
 
-    [Authorize(Roles = "paciente")]
+    //[Authorize(Roles = "paciente")]
     [HttpPost]
-    public async Task<IActionResult> CreatePaciente([FromBody] PacienteEntity paciente)
+    public async Task<IActionResult> CreatePaciente([FromBody] CreatePacienteDTO pacientedto)
     {
-        if (paciente == null)
+        if (pacientedto == null)
         {
             return BadRequest("O corpo da requisição não pode estar vazio.");
         }
+
+        PacienteEntity paciente = _mapper.Map<PacienteEntity>(pacientedto);
 
         var result = await pacienteServices.Create(paciente);
 
-        return result ? CreatedAtAction(nameof(Get), new { id = paciente.IdPaciente }, paciente) : BadRequest(new { Message = "Todos os campos (titulo, conteudo, lista) devem ser preenchidos." });
+        return result ? CreatedAtAction(nameof(Get), new { id = paciente.IdPaciente }, paciente) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
 
     }
 
-    [Authorize(Roles = "paciente")]
     [HttpPut()]
-    public IActionResult UpdatePaciente([FromBody] PacienteEntity updatedpaciente)
+    [Authorize(Roles = "paciente")]
+    public async Task<IActionResult> UpdatePaciente([FromBody] UpdatePacienteDTO updatedpacientedto)
     {
-        if (updatedpaciente == null)
+        if (updatedpacientedto == null)
         {
             return BadRequest("O corpo da requisição não pode estar vazio.");
         }
 
-        var result = pacienteServices.Update(updatedpaciente);
+        var pacienteExistente = await pacienteServices.GetById(updatedpacientedto.IdPaciente);
+        if (pacienteExistente == null)
+        {
+            return NotFound(new { Message = $"Paciente com ID {updatedpacientedto.IdPaciente} não encontrado." });
+        }
+
+        _mapper.Map(updatedpacientedto, pacienteExistente);
+
+        pacienteServices.Update(pacienteExistente);
 
         //if (result)
         //{
@@ -63,19 +75,19 @@ public class PacienteController(IPacienteServices pacienteServices) : Controller
         return NoContent();
     }
 
-    [Authorize(Roles = "paciente")]
     [HttpDelete("{id}")]
+    [Authorize(Roles = "paciente")]
     public async Task<IActionResult> DeletePaciente(int id)
     {
         var existingMedico = pacienteServices.GetById(id);
         if (existingMedico == null)
         {
-            return NotFound(new { Message = $"Nenhum cartão encontrado com o ID: {id}" });
+            return NotFound(new { Message = $"Nenhum paciente encontrado com o ID: {id}" });
         }
         var result = await pacienteServices.Delete(id);
         if (!result)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Erro ao excluir o cartão." });
+            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Erro ao excluir o paciente." });
         }
 
         //logger.LogInformation("{Time} - Medico {Id} - {Titulo} - Removido",
@@ -84,4 +96,6 @@ public class PacienteController(IPacienteServices pacienteServices) : Controller
         var remainingMedicos = await pacienteServices.Get();
         return Ok(remainingMedicos);
     }
+
+   
 }

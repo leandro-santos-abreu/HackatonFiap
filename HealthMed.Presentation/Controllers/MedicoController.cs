@@ -1,5 +1,7 @@
-﻿using HealthMed.Application.Contracts;
+﻿using AutoMapper;
+using HealthMed.Application.Contracts;
 using HealthMed.Data;
+using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +11,10 @@ namespace HealthMed.Presentation.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class MedicoController(IMedicoServices medicoServices) : ControllerBase
+public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) : ControllerBase
 {
     [HttpGet()]
-    [Authorize(Roles = "paciente,medico")]
+    //[Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> Get()
     {
         var result = await medicoServices.Get();
@@ -20,7 +22,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpGet("id")]
-    [Authorize(Roles = "paciente,medico")]
+    //[Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyId(int id)
     {
         var result = await medicoServices.GetById(id);
@@ -28,7 +30,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpGet("Nome")]
-    [Authorize(Roles = "paciente,medico")]
+    //[Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyNome(string Nome)
     {
         var result = await medicoServices.GetByNome(Nome);
@@ -36,7 +38,7 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpGet("CRM")]
-    [Authorize(Roles = "paciente,medico")]
+    //[Authorize(Roles = "paciente,medico")]
     public async Task<IActionResult> GetbyCRM(string CRM)
     {
         var result = await medicoServices.GetByCRM(CRM);
@@ -44,30 +46,41 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "medico")]
-    public async Task<IActionResult> CreateMedico([FromBody] MedicoEntity medico)
+    //[Authorize(Roles = "medico")]
+    public async Task<IActionResult> CreateMedico([FromBody] CreateMedicoDTO medicodto)
     {
-        if (medico == null)
+        if (medicodto == null)
         {
             return BadRequest("O corpo da requisição não pode estar vazio.");
         }
 
+        MedicoEntity medico = _mapper.Map<MedicoEntity>(medicodto);
+
         var result = await medicoServices.Create(medico);
 
-        return result ? CreatedAtAction(nameof(Get), new { id = medico.IdMedico }, medico) : BadRequest(new { Message = "Todos os campos (titulo, conteudo, lista) devem ser preenchidos." });
+        return result ? CreatedAtAction(nameof(Get), new { id = medico.IdMedico }, medico) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
 
     }
 
     [HttpPut()]
     [Authorize(Roles = "medico")]
-    public IActionResult UpdateMedico([FromBody] MedicoEntity updatedmedico)
+    public async Task<IActionResult> UpdateMedico([FromBody] UpdateMedicoDTO updatedmedicodto)
     {
-        if (updatedmedico == null)
+        if (updatedmedicodto == null)
         {
             return BadRequest("O corpo da requisição não pode estar vazio.");
         }
 
-        var result = medicoServices.Update(updatedmedico);
+        var medicoExistente = await medicoServices.GetById(updatedmedicodto.IdMedico);
+        if (medicoExistente == null)
+        {
+            return NotFound(new { Message = $"Médico com ID {updatedmedicodto.IdMedico} não encontrado." });
+        }
+
+
+        _mapper.Map(updatedmedicodto, medicoExistente);
+
+        medicoServices.Update(medicoExistente);
 
         //if (result)
         //{
@@ -87,12 +100,12 @@ public class MedicoController(IMedicoServices medicoServices) : ControllerBase
         var existingMedico = medicoServices.GetById(id);
         if (existingMedico == null)
         {
-            return NotFound(new { Message = $"Nenhum cartão encontrado com o ID: {id}" });
+            return NotFound(new { Message = $"Nenhum médico encontrado com o ID: {id}" });
         }
         var result = await medicoServices.Delete(id);
         if (!result)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Erro ao excluir o cartão." });
+            return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Erro ao excluir o médico." });
         }
 
         //logger.LogInformation("{Time} - Medico {Id} - {Titulo} - Removido",

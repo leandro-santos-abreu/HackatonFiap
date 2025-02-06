@@ -1104,10 +1104,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
         },
         "runtime": {
-          "HealthMed.Data.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "HealthMed.Data.dll": {}
         }
       },
       "HealthMed.Domain/1.0.0": {
@@ -1117,10 +1114,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
         },
         "runtime": {
-          "HealthMed.Domain.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "HealthMed.Domain.dll": {}
         }
       }
     }

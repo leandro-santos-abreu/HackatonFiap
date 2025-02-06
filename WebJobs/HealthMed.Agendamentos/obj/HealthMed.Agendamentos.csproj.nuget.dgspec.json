@@ -1,42 +1,43 @@
 {
   "format": 1,
   "restore": {
-    "F:\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj": {}
+    "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj": {}
   },
   "projects": {
-    "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
+    "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj",
+        "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj",
         "projectName": "HealthMed.Application",
-        "projectPath": "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj",
-        "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
-        "outputPath": "F:\\HackatonFiap\\HealthMed.Application\\obj\\",
+        "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj",
+        "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
+        "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "F:\\VSSdks\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
-                "projectPath": "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj"
+              "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+                "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj"
               },
-              "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
-                "projectPath": "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj"
+              "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
+                "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj"
               }
             }
           }
@@ -50,13 +51,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.1, )"
@@ -92,40 +96,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
+    "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj",
+        "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj",
         "projectName": "HealthMed.Data",
-        "projectPath": "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj",
-        "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
-        "outputPath": "F:\\HackatonFiap\\HealthMed.Data\\obj\\",
+        "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj",
+        "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
+        "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "F:\\VSSdks\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
-                "projectPath": "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj"
+              "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+                "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj"
               }
             }
           }
@@ -139,8 +144,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -181,32 +185,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+    "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
+        "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj",
         "projectName": "HealthMed.Domain",
-        "projectPath": "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
-        "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
-        "outputPath": "F:\\HackatonFiap\\HealthMed.Domain\\obj\\",
+        "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj",
+        "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
+        "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "F:\\VSSdks\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -224,8 +229,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -266,40 +270,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
+    "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
+        "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
         "projectName": "HealthMed.Persistence",
-        "projectPath": "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
-        "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
-        "outputPath": "F:\\HackatonFiap\\HealthMed.Persistence\\obj\\",
+        "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
+        "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
+        "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "F:\\VSSdks\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
-                "projectPath": "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
+              "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj": {
+                "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj"
               }
             }
           }
@@ -313,8 +318,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -359,43 +363,44 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj": {
+    "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
+        "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
         "projectName": "HealthMed.Agendamentos",
-        "projectPath": "F:\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
-        "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
-        "outputPath": "F:\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\obj\\",
+        "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
+        "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
+        "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "F:\\VSSdks\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
-                "projectPath": "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj"
+              "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj": {
+                "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj"
               },
-              "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
-                "projectPath": "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
+              "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj": {
+                "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj"
               }
             }
           }
@@ -409,8 +414,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -449,7 +453,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
