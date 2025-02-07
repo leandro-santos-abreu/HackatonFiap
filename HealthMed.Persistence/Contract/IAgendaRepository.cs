@@ -10,7 +10,7 @@ public interface IAgendaRepository
    
     Task<bool> Create(AgendaEntity Agenda);
 
-    bool Update(AgendaEntity updatedAgenda);
+    Task<bool> Update(AgendaEntity updatedAgenda);
 
     Task<bool> Delete(int id);
 

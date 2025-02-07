@@ -119,7 +119,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     }
 
 
-    public bool Update(AgendaEntity updatedAgenda)
+    public async Task<bool> Update(AgendaEntity updatedAgenda)
     {               
         try
         {
@@ -129,7 +129,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             }
 
             db.Agenda.Update(updatedAgenda);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             Task.Delay(1);
             return true;

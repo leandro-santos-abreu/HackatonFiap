@@ -46,7 +46,7 @@ public class AgendaServices(IAgendaRepository agendaRepository) : IAgendaService
         return result;
     }
 
-    public bool Update(AgendaEntity updatedMedico)
+    public Task<bool> Update(AgendaEntity updatedMedico)
     {
         var result = agendaRepository.Update(updatedMedico);
         return result;

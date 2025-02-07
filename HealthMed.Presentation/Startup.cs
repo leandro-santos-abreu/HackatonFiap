@@ -64,7 +64,7 @@ namespace HealthMed.Presentation
             services.AddScoped<IMedicoRepository, MedicoRepository>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddScoped<IAgendaRepository, AgendaRepository>();
-            services.AddScoped<IAutenticationRepository, AutenticationRepository>();
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 
             services.AddScoped<IMedicoServices, MedicoServices>();
             services.AddScoped<IPacienteServices, PacienteServices>();
