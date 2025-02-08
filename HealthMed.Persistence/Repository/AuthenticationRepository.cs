@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore;
 namespace HealthMed.Persistence.Repository;
 public class AuthenticationRepository(HealthMedContext db) : IAuthenticationRepository
 {
-    public (bool IsValidUser, string Role) GetUserByLogin(string TipoDoc, string usuario, string senha)
+    public (bool IsValidUser, int userId, string Role) GetUserByLogin(string TipoDoc, string usuario, string senha)
     {
         //VerificaUsuariosComSenhaHash();
         string doc = TipoDoc.Length > 10 ? "CPF" : "CRM";
 
         // Primeiro verifica se é um médico
-        if(TipoDoc == "CPF")
+        if(doc == "CPF")
         {
             var paciente = db.Paciente.FirstOrDefault(x => x.Email == usuario && x.CPF == TipoDoc);
             if (paciente != null && BCrypt.Net.BCrypt.Verify(senha, paciente.Senha))
             {
-                return (true, "paciente");
+                return (true,paciente.IdPaciente, "paciente");
             }
         }
         else
@@ -27,12 +27,12 @@ public class AuthenticationRepository(HealthMedContext db) : IAuthenticationRepo
             var medico = db.Medico.FirstOrDefault(x => x.Email == usuario && x.CRM == TipoDoc);
             if (medico != null && BCrypt.Net.BCrypt.Verify(senha, medico.Senha))
             {
-                return (true, "medico");
+                return (true,medico.IdMedico, "medico");
             }
         }
 
         // Se não for médico, verifica se é um paciente
-        return (false, string.Empty); // Usuário não encontrado ou senha incorreta
+        return (false,0, string.Empty); // Usuário não encontrado ou senha incorreta
     }
 
     internal void VerificaUsuariosComSenhaHash()

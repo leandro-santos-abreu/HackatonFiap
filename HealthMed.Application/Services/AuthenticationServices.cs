@@ -20,18 +20,18 @@ namespace HealthMed.Application.Services
 
 
 
-            var (isValidUser, role) = autenticationRepository.GetUserByLogin(TipoDoc, usuario, senha);
+            var (isValidUser, userId, role) = autenticationRepository.GetUserByLogin(TipoDoc, usuario, senha);
 
             if (isValidUser)
             {
-                var token = GenerateToken(usuario, role);
+                var token = GenerateToken(userId, usuario, role);
                 return token;
             }
 
             return string.Empty; // Retorna vazio se o usuário não for autenticado
         }
 
-        private string GenerateToken(string username, string role)
+        private string GenerateToken(int userId, string username, string role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(config["Jwt:Key"]);
@@ -39,7 +39,8 @@ namespace HealthMed.Application.Services
 
             var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, username),
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString()), // Agora armazenamos o ID do usuário corretamente
+            new Claim(ClaimTypes.Name, username),
             new Claim(ClaimTypes.Role, role),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };

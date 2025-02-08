@@ -32,40 +32,46 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             agenda.IdPaciente = idPaciente;
             agenda.Paciente = paciente;
 
+            db.Agenda.Update(agenda);
+            await db.SaveChangesAsync();
+
+            Task.Delay(1);
+
             return new ResultadoAgendamentoDTO(true, "Agendamento realizado com sucesso!");
         }
         catch (Exception ex)
         {
-            return new ResultadoAgendamentoDTO(false, "Ocorreu um erro ao criar a agenda : " + ex.Message);            
+            return new ResultadoAgendamentoDTO(false, "Ocorreu um erro ao criar a agenda : " + ex.Message);
         }
 
     }
 
-    public bool ValidaAgendamentoExistente(AgendaEntity agenda)
+    public async Task<bool> ValidaAgendamentoExistenteAsync(AgendaEntity agenda)
     {
-        // Verifica se já existe uma agenda no mesmo horário para o médico
-        bool agendaExistente = db.Agenda
-            .Any(a => a.IdMedico == agenda.IdMedico && a.HorarioDisponivel == agenda.HorarioDisponivel);
-
-        return agendaExistente;
+        return await db.Agenda
+            .AnyAsync(a => a.IdMedico == agenda.IdMedico && a.HorarioDisponivel == agenda.HorarioDisponivel);
     }
 
-    public async Task<bool> Create(AgendaEntity agenda)
+
+    public async Task<AgendaEntity> Create(AgendaEntity agenda)
     {
         try
         {
-            if (ValidaAgendamentoExistente(agenda))
+            if (await ValidaAgendamentoExistenteAsync(agenda))
             {
-                throw new Exception() ;
+                throw new InvalidOperationException("Esse horário já está marcado."); // Exceção com mensagem clara
             }
 
             await db.Agenda.AddAsync(agenda);
-            db.SaveChanges();
-            return true;
+            await db.SaveChangesAsync(); // Tornar assíncrono para evitar deadlocks
+
+            return await db.Agenda
+                .Include(a => a.Medico)
+                .FirstOrDefaultAsync(a => a.IdAgenda == agenda.IdAgenda);
         }
         catch (Exception ex)
         {
-            return false;
+            throw new Exception($"Erro ao criar a agenda: {ex.Message}", ex); // Propagar erro com mais contexto
         }
     }
 
@@ -100,7 +106,8 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             Medico = a.Medico != null ? new ReadMedicoResumoDTO
             {
                 Nome = a.Medico.Nome,
-                CRM = a.Medico.CRM
+                CRM = a.Medico.CRM,
+                Especialidade = a.Medico.Especialidade
             } : null
         }).ToList();
     }
@@ -119,24 +126,20 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     }
 
 
-    public async Task<bool> Update(AgendaEntity updatedAgenda)
-    {               
-        try
-        {
-            if (ValidaAgendamentoExistente(updatedAgenda))
-            {
-                throw new Exception();
-            }
+    public async Task<AgendaEntity> UpdateAsync(AgendaEntity updatedAgenda)
+    {
 
-            db.Agenda.Update(updatedAgenda);
-            await db.SaveChangesAsync();
-
-            Task.Delay(1);
-            return true;
-        }
-        catch (Exception)
+        if (await ValidaAgendamentoExistenteAsync(updatedAgenda))
         {
-            return false;
+            throw new InvalidOperationException("Esse horário já está marcado.");
         }
+
+        db.Agenda.Update(updatedAgenda);
+        await db.SaveChangesAsync();
+
+        return await db.Agenda
+            .Include(a => a.Medico)
+            .FirstOrDefaultAsync(a => a.IdAgenda == updatedAgenda.IdAgenda);
+
     }
 }

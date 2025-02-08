@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj": {}
+    "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {}
   },
   "projects": {
-    "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+    "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
         "projectName": "HealthMed.Domain",
-        "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\HealthMed.Domain.csproj",
-        "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
-        "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Domain\\obj\\",
+        "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
+        "packagesPath": "C:\\Users\\CaioMaciente\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\CaioMaciente\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -44,7 +44,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -85,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

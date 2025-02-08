@@ -20,7 +20,10 @@ public class MedicoEntity
     [Required]
     [CrmValidation(ErrorMessage = "CRM inválido. Formato esperado: UF + número (Ex: SP123456).")]
     public string CRM { get; set; }
-    
+
+    [Required(ErrorMessage = "É necessário atribuir uma Especialidade Médica.")]
+    public string Especialidade { get; set; }
+
     [Required , EmailAddress(ErrorMessage = "E-mail inválido.")]
     public string Email { get; set; }
     

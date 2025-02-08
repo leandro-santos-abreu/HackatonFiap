@@ -4536,25 +4536,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\caio_\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\CaioMaciente\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
+      "projectUniqueName": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
       "projectName": "HealthMed.Agendamentos",
-      "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
-      "packagesPath": "C:\\Users\\caio_\\.nuget\\packages\\",
-      "outputPath": "F:\\FiapProjects\\HealthMed_Hackaton\\WebJobs\\HealthMed.Agendamentos\\obj\\",
+      "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
+      "packagesPath": "C:\\Users\\CaioMaciente\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\caio_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\CaioMaciente\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4568,11 +4568,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj": {
-              "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Application\\HealthMed.Application.csproj"
+            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
+              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj"
             },
-            "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj": {
-              "projectPath": "F:\\FiapProjects\\HealthMed_Hackaton\\HealthMed.Data\\HealthMed.Data.csproj"
+            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
+              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
             }
           }
         }
@@ -4586,7 +4586,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -4625,7 +4626,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

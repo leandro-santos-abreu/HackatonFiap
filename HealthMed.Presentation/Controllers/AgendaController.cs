@@ -5,14 +5,15 @@ using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using HealthMed.Data.DTO;
 using AutoMapper;
-using HealthMed.Application.Services;
+using System.Security.Claims;
+using MassTransit.Middleware;
 
 namespace HealthMed.Presentation.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-//public class AgendaController(IAgendaServices agendaServices, IBus _bus, IMapper _mapper) : ControllerBase
-public class AgendaController(IAgendaServices agendaServices, IMapper _mapper) : ControllerBase
+public class AgendaController(IAgendaServices agendaServices, IBus _bus, IMapper _mapper) : ControllerBase
+//public class AgendaController(IAgendaServices agendaServices, IMapper _mapper) : ControllerBase
 {
     [HttpGet()]
     [Authorize(Roles = "paciente,medico")]
@@ -37,12 +38,16 @@ public class AgendaController(IAgendaServices agendaServices, IMapper _mapper) :
     [Authorize(Roles = "paciente")]
     public async Task<IActionResult> AgendarHorario([FromBody] AgendamentoRequestDTO request)
     {
-        var resultado = await agendaServices.AgendarHorarioAsync(request.IdPaciente, request.IdAgenda);
+        //var resultado = await agendaServices.AgendarHorarioAsync(request.IdPaciente, request.IdAgenda);
 
-        if (!resultado.Sucesso)
-            return BadRequest(resultado.Mensagem);
+        var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:CreateAgendarHorario"));
 
-        return Ok(new { resultado.Mensagem });
+        await endpoint.Send(request);
+
+        //if (!resultado.Sucesso)
+        //    return BadRequest(resultado.Mensagem);
+
+        return Ok(); // new { resultado.Mensagem });
     }
 
     [HttpPost]
@@ -58,55 +63,60 @@ public class AgendaController(IAgendaServices agendaServices, IMapper _mapper) :
 
             AgendaEntity agenda = _mapper.Map<AgendaEntity>(agendadto);
 
-            var result = await agendaServices.Create(agenda);
+            var result = await agendaServices.Create(agenda);            
 
-            return result ? CreatedAtAction(nameof(Get), new { id = agenda.IdAgenda }, agenda) : BadRequest(new { Message = "Ocorreu um erro ao criar a agenda. "  }); 
-
-
-            //var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:CreateAgendamento"));
-
-            //await endpoint.Send(agenda);
-
-            //return Ok();
+            return CreatedAtAction(nameof(Get), new { id = result.IdAgenda }, result);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new {ex.Message});
         }
     }
 
-    [HttpPut()]
+
+
+    [HttpPut]
     [Authorize(Roles = "medico")]
-    public async Task<IActionResult> UpdateAgenda([FromBody] UpdateAgendaDTO updatedagendadto)
+    public async Task<IActionResult> UpdateAgenda([FromBody] UpdateAgendaDTO updatedAgendaDto)
     {
-        try
+        if (updatedAgendaDto == null)
         {
-            if (updatedagendadto == null)
-            {
-                return BadRequest("O corpo da requisição não pode estar vazio.");
-            }
-
-            var agendaExistente = await agendaServices.GetById(updatedagendadto.IdMedico);
-            if (agendaExistente == null)
-            {
-                return NotFound(new { Message = $"Médico com ID {updatedagendadto.IdMedico} não encontrado." });
-            }
-
-
-            _mapper.Map(updatedagendadto, agendaExistente);
-
-            agendaServices.Update(agendaExistente);
-            //var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:UpdateAgendamento"));
-
-            //await endpoint.Send(updatedagenda);
-
-            return NoContent();
+            return BadRequest(new { Message = "O corpo da requisição não pode estar vazio." });
         }
-        catch (Exception ex)
+
+        // Buscar a agenda pelo ID correto
+        var agendaExistente = await agendaServices.GetById(updatedAgendaDto.IdAgenda);
+        if (agendaExistente == null)
         {
-            return BadRequest(ex.Message);
+            return NotFound(new { Message = $"Agenda com ID {updatedAgendaDto.IdAgenda} não encontrada." });
         }
+
+        // Obtém o ID do médico autenticado
+        var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null)
+        {
+            return Unauthorized(new { Message = "Usuário não autenticado." });
+        }
+
+        // Verifica se o médico autenticado é o dono da agenda
+        if (agendaExistente.IdMedico.ToString() != userId)
+        {
+            return Forbid(); // Retorna 403 Forbidden
+        }
+
+        // Atualiza os campos da agenda com os novos dados
+        _mapper.Map(updatedAgendaDto, agendaExistente);
+
+        // Chama o método assíncrono para salvar no banco
+        //await agendaServices.UpdateAsync(agendaExistente);
+
+        var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:UpdateAgendamento"));
+
+        await endpoint.Send(agendaExistente);
+
+        return NoContent(); // Retorna 204 No Content quando atualizado com sucesso
     }
+
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "medico")]
@@ -120,9 +130,9 @@ public class AgendaController(IAgendaServices agendaServices, IMapper _mapper) :
                 return NotFound(new { Message = $"Nenhum agendamento encontrado com o ID: {id}" });
             }
 
-            //var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:DeleteAgendamento"));
+            var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:DeleteAgendamento"));
 
-            //await endpoint.Send(existingAgendamento);
+            await endpoint.Send(existingAgendamento);
 
             return Ok();
         }

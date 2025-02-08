@@ -10,7 +10,7 @@ namespace HealthMed.Agendamentos.Consumer
 
         public async Task Consume(ConsumeContext<AgendaEntity> context)
         {
-            await _agendaService.Update(context.Message!);
+            await _agendaService.UpdateAsync(context.Message!);
         }
     }
 }

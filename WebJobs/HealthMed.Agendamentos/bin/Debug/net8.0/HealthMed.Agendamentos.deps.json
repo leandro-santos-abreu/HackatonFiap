@@ -1071,7 +1071,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
         },
         "runtime": {
-          "HealthMed.Application.dll": {}
+          "HealthMed.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "HealthMed.Data/1.0.0": {
@@ -1082,7 +1085,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
         },
         "runtime": {
-          "HealthMed.Data.dll": {}
+          "HealthMed.Data.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "HealthMed.Domain/1.0.0": {
@@ -1092,7 +1098,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
         },
         "runtime": {
-          "HealthMed.Domain.dll": {}
+          "HealthMed.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "HealthMed.Persistence/1.0.0": {
@@ -1104,7 +1113,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
         },
         "runtime": {
-          "HealthMed.Persistence.dll": {}
+          "HealthMed.Persistence.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
