@@ -75,7 +75,7 @@ namespace HealthMed.Presentation
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Configuração da autenticação JWT
-            var secretKey = Configuration["Jwt:Key"];
+            var secretKey = Configuration.GetSection("Jwt")["Key"] ?? string.Empty;
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -95,20 +95,19 @@ namespace HealthMed.Presentation
             var usuario = Configuration.GetSection("MassTransit")["Usuario"] ?? string.Empty;
             var senha = Configuration.GetSection("MassTransit")["Senha"] ?? string.Empty;
 
-            if (string.IsNullOrEmpty(Configuration.GetValue<string>("Enviroment")))
-                services.AddMassTransit(x =>
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, cfg) =>
                 {
-                    x.UsingRabbitMq((context, cfg) =>
+                    cfg.Host(new Uri(servidor), "/", h =>
                     {
-                        cfg.Host(new Uri(servidor), "/", h =>
-                        {
-                            h.Username(usuario);
-                            h.Password(senha);
-                        });
-
-                        cfg.ConfigureEndpoints(context);
+                        h.Username(usuario);
+                        h.Password(senha);
                     });
+
+                    cfg.ConfigureEndpoints(context);
                 });
+            });
         }
 
 
