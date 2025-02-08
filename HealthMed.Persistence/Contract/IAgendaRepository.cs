@@ -15,4 +15,8 @@ public interface IAgendaRepository
     Task<bool> Delete(int id);
 
     Task<ResultadoAgendamentoDTO> AgendarHorarioAsync(int idPaciente, int idAgenda);
+
+    Task<ResultadoAgendamentoDTO> ConfirmaAgendamento(int idAgenda, bool isAceiteAgendamento);
+
+    Task<ResultadoAgendamentoDTO> CancelarAgendamentoAsync(int idAgenda, string JustificativaCancelamento);
 }

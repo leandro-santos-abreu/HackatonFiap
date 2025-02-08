@@ -4941,9 +4941,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
       "projectName": "HealthMed.Persistence",
-      "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
+      "projectPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj",
       "packagesPath": "C:\\Users\\CaioMaciente\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Persistence\\obj\\",
       "projectStyle": "PackageReference",
@@ -4967,8 +4967,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
+            "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
+              "projectPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
             }
           }
         }

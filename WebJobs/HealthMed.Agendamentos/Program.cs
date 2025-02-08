@@ -24,6 +24,7 @@ var builder = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, se
         x.AddConsumer<AgendamentoUpdateConsumer>();
         x.AddConsumer<AgendamentoDeleteConsumer>();
         x.AddConsumer<AgendarHorarioCreateConsumer>();
+        x.AddConsumer<CancelarAgendamentoCreateConsumer>();
         x.UsingRabbitMq((context, cfg) =>
         {
             cfg.Host(new Uri(servidor), "/", h =>
@@ -50,6 +51,11 @@ var builder = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, se
              cfg.ReceiveEndpoint("CreateAgendarHorario", e =>
              {
                  e.ConfigureConsumer<AgendarHorarioCreateConsumer>(context);
+             });
+            
+            cfg.ReceiveEndpoint("CancelarAgendamento", e =>
+             {
+                 e.ConfigureConsumer<CancelarAgendamentoCreateConsumer>(context);
              });
 
             cfg.ConfigureEndpoints(context);

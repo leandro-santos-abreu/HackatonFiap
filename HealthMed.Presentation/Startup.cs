@@ -69,6 +69,8 @@ namespace HealthMed.Presentation
             services.AddScoped<IPacienteServices, PacienteServices>();
             services.AddScoped<IAgendaServices, AgendaServices>();
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+            services.AddScoped<IEmailService, EmailService>();
+            
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

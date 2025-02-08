@@ -20,7 +20,7 @@ namespace HealthMed.Agendamentos.Consumer
     //    }
     //}
 
-    public class AgendarHorarioCreateConsumer(IAgendaServices agendaService, IBus _bus) : IConsumer<AgendamentoRequestDTO>
+    public class AgendarHorarioCreateConsumer(IAgendaServices agendaService) : IConsumer<AgendamentoRequestDTO>
     {
         private readonly IAgendaServices _agendaService = agendaService;
 
@@ -45,9 +45,7 @@ namespace HealthMed.Agendamentos.Consumer
                 IdPaciente = agendaMessage.IdPaciente
             };
 
-            // Enviar para a fila de notificação
-            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:NotifyAgendamento"));
-            await endpoint.Send(agenda);
+            
         }
     }
 

@@ -45,6 +45,14 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
         return Ok(result);
     }
 
+    [HttpGet("Especialidade")]
+    //[Authorize(Roles = "paciente,medico")]
+    public async Task<IActionResult> GetbyEspecialidade(string Especialidade)
+    {
+        var result = await medicoServices.GetByEspecialidade(Especialidade);
+        return Ok(result);
+    }
+
     [HttpPost]
     //[Authorize(Roles = "medico")]
     public async Task<IActionResult> CreateMedico([FromBody] CreateMedicoDTO medicodto)

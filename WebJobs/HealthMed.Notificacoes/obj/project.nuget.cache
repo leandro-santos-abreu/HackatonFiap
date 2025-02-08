@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KXuxHgv5B5k=",
+  "dgSpecHash": "U2TiYu9VRTI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\HealthMed.Notificacoes.csproj",
+  "projectFilePath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\HealthMed.Notificacoes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CaioMaciente\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\CaioMaciente\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",

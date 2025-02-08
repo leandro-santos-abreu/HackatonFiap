@@ -11,6 +11,8 @@ public class AgendaEntity
     public DateTime HorarioDisponivel { get; set; }
     public bool isHorarioMarcado { get; set; } = false;
     public bool isMedicoNotificado { get; set; } = false;
+    public bool isConfirmacaoMedico { get; set; } = false;
+    public string JustificativaCancelamento { get; set; }
 
     [ForeignKey("Medico")]
     public int IdMedico { get; set; }

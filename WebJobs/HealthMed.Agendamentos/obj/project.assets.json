@@ -1694,6 +1694,8 @@
           "AutoMapper": "13.0.1",
           "HealthMed.Domain": "1.0.0",
           "HealthMed.Persistence": "1.0.0",
+          "MassTransit.Extensions.DependencyInjection": "7.3.1",
+          "MassTransit.RabbitMQ": "8.3.6",
           "Microsoft.EntityFrameworkCore": "9.0.1",
           "Microsoft.EntityFrameworkCore.Proxies": "9.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.1"
@@ -4542,11 +4544,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
+      "projectUniqueName": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
       "projectName": "HealthMed.Agendamentos",
-      "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
+      "projectPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\HealthMed.Agendamentos.csproj",
       "packagesPath": "C:\\Users\\CaioMaciente\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\obj\\",
+      "outputPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\WebJobs\\HealthMed.Agendamentos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4568,11 +4570,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj"
+            "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
+              "projectPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj"
             },
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
+            "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
+              "projectPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
             }
           }
         }

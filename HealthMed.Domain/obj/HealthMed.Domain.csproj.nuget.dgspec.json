@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {}
+    "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+    "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
         "projectName": "HealthMed.Domain",
-        "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
+        "projectPath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj",
         "packagesPath": "C:\\Users\\CaioMaciente\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\obj\\",
         "projectStyle": "PackageReference",

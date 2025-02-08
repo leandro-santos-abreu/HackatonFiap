@@ -2,25 +2,44 @@
 using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
-using HealthMed.Persistence.Repository;
-using Microsoft.EntityFrameworkCore;
+using MassTransit;
 
 
 namespace HealthMed.Application.Services;
-public class AgendaServices(IAgendaRepository agendaRepository) : IAgendaServices
-{
+public class AgendaServices(IAgendaRepository agendaRepository, IBus bus) : IAgendaServices
+{   
     public async Task<ResultadoAgendamentoDTO> AgendarHorarioAsync(int idPaciente, int idAgenda)
     {
 
         var result = await agendaRepository.AgendarHorarioAsync(idPaciente, idAgenda);
 
-        // 🚀 Aqui você pode enviar um e-mail para o médico notificando sobre o agendamento
-        //if(result.Sucesso)
-        //ToDo EnviarEmailParaMedico
+        if (result.Sucesso)
+        {
+            var agenda = await agendaRepository.GetById(idAgenda);
+            if (agenda != null && agenda.Medico != null && !agenda.isMedicoNotificado)
+            {
+                // Enviar notificação para a fila do RabbitMQ
+                var endpoint = await bus.GetSendEndpoint(new Uri("queue:NotifyAgendamento"));
+                await endpoint.Send(agenda);
+            }
+
+        }
+
 
         return result;
     }
 
+    public async Task<ResultadoAgendamentoDTO> CancelarAgendamento(int idAgenda, string JustificativaCancelamento)
+    {
+        var result = await agendaRepository.CancelarAgendamentoAsync(idAgenda, JustificativaCancelamento);
+        return result;
+    }
+
+    public async Task<ResultadoAgendamentoDTO> ConfirmaAgendamento(int idAgenda, bool isAceiteAgendamento)
+    {
+        var result = await agendaRepository.ConfirmaAgendamento(idAgenda, isAceiteAgendamento);
+        return result;
+    }
 
     public async Task<ReadAgendaDTO> Create(AgendaEntity agenda)
     {

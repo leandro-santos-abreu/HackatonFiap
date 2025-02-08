@@ -40,6 +40,12 @@ public class MedicoServices(IMedicoRepository medicoRepository) : IMedicoService
         return result;
     }
 
+    public async Task<MedicoEntity> GetByEspecialidade(string Especialidade)
+    {
+        var result = await medicoRepository.GetByEspecialidade(Especialidade);
+        return result;
+    }
+
     public async Task<MedicoEntity> GetById(int id)
     {
         var result = await medicoRepository.GetById(id);

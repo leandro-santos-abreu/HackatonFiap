@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2UkYVenJMrw=",
+  "dgSpecHash": "2epeVwu7/sA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj",
+  "projectFilePath": "C:\\Users\\CaioMaciente\\source\\repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CaioMaciente\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\CaioMaciente\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
