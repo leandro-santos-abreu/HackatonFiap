@@ -1,7 +1,6 @@
 ﻿using HealthMed.Application.Contracts;
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
-using HealthMed.Persistence.Repository;
 
 
 namespace HealthMed.Application.Services;

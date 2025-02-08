@@ -102,20 +102,20 @@ public class AgendaController(IAgendaServices agendaServices, IBus _bus, IMapper
 
     [HttpPost]
     [Authorize(Roles = "medico")]
-    public async Task<IActionResult> CreateAgenda([FromBody] CreateAgendaDTO agendadto)
+    public async Task<IActionResult> CreateAgenda([FromBody] CreateAgendaDTO agendaDto)
     {
         try
         {
-            if (agendadto == null)
+            if (agendaDto == null)
             {
                 return BadRequest("O corpo da requisição não pode estar vazio.");
             }
 
-            AgendaEntity agenda = _mapper.Map<AgendaEntity>(agendadto);
+            AgendaEntity agenda = _mapper.Map<AgendaEntity>(agendaDto);
 
             var result = await agendaServices.Create(agenda);            
 
-            return CreatedAtAction(nameof(Get), new { id = result.IdAgenda }, result);
+            return Ok();
         }
         catch (Exception ex)
         {

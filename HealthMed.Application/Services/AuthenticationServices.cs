@@ -5,7 +5,6 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using HealthMed.Application.Contracts;
 using HealthMed.Persistence.Contract;
-using MeuProjeto.Domain.Validations;
 using HealthMed.Domain.Validations;
 
 namespace HealthMed.Application.Services

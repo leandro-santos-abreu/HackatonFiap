@@ -9,7 +9,7 @@ public class AuthenticationController(IAuthenticationServices authenticationServ
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginRequest loginRequest)
     {
-        if (!ValidatePacienteLoginRequest(loginRequest) || !ValidateMedicoLoginRequest(loginRequest)) return Unauthorized("Login deve ser realizado por CPF/Email ou CRM/Email.");
+        if (!ValidatePacienteLoginRequest(loginRequest) && !ValidateMedicoLoginRequest(loginRequest)) return Unauthorized("Login deve ser realizado por CPF/Email ou CRM/Email.");
 
         var token = authenticationServices.Login(loginRequest.CPF.Length > 10 ? loginRequest.CPF : loginRequest.CRM, loginRequest.Login, loginRequest.Senha);
 

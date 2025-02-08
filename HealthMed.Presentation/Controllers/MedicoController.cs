@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using HealthMed.Application.Contracts;
-using HealthMed.Data;
 using HealthMed.Data.DTO;
+using HealthMed.Domain.Dto;
 using HealthMed.Domain.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace HealthMed.Presentation.Controllers;
 
@@ -55,14 +54,14 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
 
     [HttpPost]
     //[Authorize(Roles = "medico")]
-    public async Task<IActionResult> CreateMedico([FromBody] CreateMedicoDTO medicodto)
+    public async Task<IActionResult> CreateMedico([FromBody] CreateMedicoDTO? medicoDto)
     {
-        if (medicodto == null)
+        if (medicoDto == null)
         {
             return BadRequest("O corpo da requisição não pode estar vazio.");
         }
 
-        MedicoEntity medico = _mapper.Map<MedicoEntity>(medicodto);
+        MedicoEntity medico = _mapper.Map<MedicoEntity>(medicoDto);
 
         var result = await medicoServices.Create(medico);
 
@@ -92,14 +91,6 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
 
         medicoServices.Update(medicoExistente);
 
-        //if (result)
-        //{
-        //    logger.LogInformation("{Time} - Medico {Id} - {Titulo} - Alterado",
-        //    DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), id, updatedmedico.Titulo);
-        //}
-
-
-        //return result ? Ok(new { Message = "Cartão atualizado com sucesso." }) : BadRequest(new { Message = "Todos os campos (titulo, conteudo, lista) devem ser preenchidos." });
         return NoContent();
     }
 
@@ -117,9 +108,6 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
         {
             return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Erro ao excluir o médico." });
         }
-
-        //logger.LogInformation("{Time} - Medico {Id} - {Titulo} - Removido",
-        //DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), id, existingMedico.Titulo);
 
         var remainingMedicos = await medicoServices.Get();
         return Ok(remainingMedicos);

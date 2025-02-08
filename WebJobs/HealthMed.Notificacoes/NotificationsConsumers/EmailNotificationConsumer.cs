@@ -1,5 +1,4 @@
-﻿using HealthMed.Domain.Entity;
-using MassTransit;
+﻿using MassTransit;
 using SendGrid.Helpers.Mail;
 using SendGrid;
 using HealthMed.Domain.Dto;

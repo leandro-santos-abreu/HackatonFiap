@@ -1,5 +1,4 @@
-﻿using MeuProjeto.Domain.Validations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HealthMed.Data.DTO;
 

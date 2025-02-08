@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using MeuProjeto.Domain.Validations;
 
 namespace HealthMed.Presentation.Model;
 

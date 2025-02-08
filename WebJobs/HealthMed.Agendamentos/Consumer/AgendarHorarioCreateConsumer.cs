@@ -24,9 +24,6 @@ namespace HealthMed.Agendamentos.Consumer
 
             var agenda = await _agendaService.GetById(agendaMessage.IdAgenda);
 
-            if (agenda.isMedicoNotificado)
-                return;
-
             NotifyDto notifyDto = new NotifyDto
             {
                 Agenda = _mapper.Map<ReadAgendaDTO>(agenda),
@@ -38,9 +35,6 @@ namespace HealthMed.Agendamentos.Consumer
             var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:Notify"));
 
             await endpoint.Send(notifyDto);
-
-            agenda.isMedicoNotificado = true;
-            await _agendaService.UpdateAsync(agenda);
         }
     }
 

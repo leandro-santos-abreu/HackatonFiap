@@ -2,7 +2,6 @@
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.CodeAnalysis;
 
 
 namespace HealthMed.Persistence.Repository;

@@ -93,19 +93,21 @@ namespace HealthMed.Presentation
             var usuario = Configuration.GetSection("MassTransit")["Usuario"] ?? string.Empty;
             var senha = Configuration.GetSection("MassTransit")["Senha"] ?? string.Empty;
 
-            services.AddMassTransit(x =>
-            {
-                x.UsingRabbitMq((context, cfg) =>
+            var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (!string.IsNullOrWhiteSpace(enviroment) && enviroment.Equals("Production"))
+                services.AddMassTransit(x =>
                 {
-                    cfg.Host(new Uri(servidor), "/", h =>
+                    x.UsingRabbitMq((context, cfg) =>
                     {
-                        h.Username(usuario);
-                        h.Password(senha);
-                    });
+                        cfg.Host(new Uri(servidor), "/", h =>
+                        {
+                            h.Username(usuario);
+                            h.Password(senha);
+                        });
 
-                    cfg.ConfigureEndpoints(context);
+                        cfg.ConfigureEndpoints(context);
+                    });
                 });
-            });
         }
 
 
