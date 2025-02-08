@@ -10,5 +10,6 @@ public class MedicoProfile : Profile
         CreateMap<CreateMedicoDTO, MedicoEntity>().ReverseMap();
         CreateMap<UpdateMedicoDTO, MedicoEntity>();
         CreateMap<MedicoEntity, UpdateMedicoDTO>();
+        CreateMap<MedicoEntity, ReadMedicoResumoDTO>();
     }
 }

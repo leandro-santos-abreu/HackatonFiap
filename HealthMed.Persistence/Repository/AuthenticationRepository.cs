@@ -1,8 +1,5 @@
 ﻿using HealthMed.Data;
-using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
-using Microsoft.EntityFrameworkCore;
-
 
 
 namespace HealthMed.Persistence.Repository;
@@ -16,7 +13,7 @@ public class AuthenticationRepository(HealthMedContext db) : IAuthenticationRepo
         // Primeiro verifica se é um médico
         if(doc == "CPF")
         {
-            var paciente = db.Paciente.FirstOrDefault(x => x.Email == usuario && x.CPF == TipoDoc);
+            var paciente = db.Paciente.FirstOrDefault(x => x.Email == usuario || x.CPF == TipoDoc);
             if (paciente != null && BCrypt.Net.BCrypt.Verify(senha, paciente.Senha))
             {
                 return (true,paciente.IdPaciente, "paciente");
@@ -24,7 +21,7 @@ public class AuthenticationRepository(HealthMedContext db) : IAuthenticationRepo
         }
         else
         {
-            var medico = db.Medico.FirstOrDefault(x => x.Email == usuario && x.CRM == TipoDoc);
+            var medico = db.Medico.FirstOrDefault(x => x.Email == usuario || x.CRM == TipoDoc);
             if (medico != null && BCrypt.Net.BCrypt.Verify(senha, medico.Senha))
             {
                 return (true,medico.IdMedico, "medico");

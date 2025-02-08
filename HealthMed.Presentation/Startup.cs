@@ -68,7 +68,7 @@ namespace HealthMed.Presentation
             services.AddScoped<IMedicoServices, MedicoServices>();
             services.AddScoped<IPacienteServices, PacienteServices>();
             services.AddScoped<IAgendaServices, AgendaServices>();
-            services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+            services.AddScoped<IAuthenticationServices, AuthenticationServices>();            
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

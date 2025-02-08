@@ -2,26 +2,27 @@
 using MassTransit;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using HealthMed.Domain.Dto;
 
-namespace HealthMed.Notificacoes.NotificacoesConsumers
+namespace HealthMed.Notificacoes.NotificationsConsumers
 {
-    public class EmailNotificationConsumer(IConfiguration configuration) : IConsumer<AgendaEntity>
+    public class EmailNotificationConsumer(IConfiguration configuration) : IConsumer<NotifyDto>
     {
-        private IConfiguration _configuration = configuration;
-        public async Task Consume(ConsumeContext<AgendaEntity> context)
+        private readonly IConfiguration _configuration = configuration;
+        public async Task Consume(ConsumeContext<NotifyDto> context)
         {
             var apiKey = _configuration.GetValue<string>("SendGrid:ApiKey");
             var client = new SendGridClient(apiKey);
 
             var from = new EmailAddress("leandro.sabreu@outlook.com", "HealthMed");
-            var to = new EmailAddress($"{context.Message!.Medico?.Email}", $"{context.Message!.Medico?.Nome}");
-            var subject = "Sending with SendGrid is Fun";
+            var to = new EmailAddress($"{context.Message!.Agenda.Medico?.Email}", $"{context.Message!.Agenda.Medico?.Nome}");
 
-            var plainTextContent = "and easy to do anywhere, even with C#";
-            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
 
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(msg);
+            if (context.Message.Receiver.Equals("Paciente"))
+                to = new EmailAddress($"{context.Message!.Agenda.Paciente?.Email}", $"{context.Message!.Agenda.Paciente?.Nome}");
+
+            var msg = MailHelper.CreateSingleEmail(from, to, context.Message!.Subject, context.Message.Content, context.Message.Content);
+            await client.SendEmailAsync(msg);
         }
     }
 }

@@ -1,26 +1,12 @@
-﻿using HealthMed.Application.Contracts;
+﻿using AutoMapper;
+using HealthMed.Application.Contracts;
 using HealthMed.Data.DTO;
-using HealthMed.Domain.Entity;
+using HealthMed.Domain.Dto;
 using MassTransit;
-using MassTransit.Middleware;
 
 namespace HealthMed.Agendamentos.Consumer
 {
-    //public class AgendarHorarioCreateConsumer(IAgendaServices agendaService, IBus _bus) : IConsumer<AgendaEntity>
-    //{
-    //    private readonly IAgendaServices _agendaService = agendaService;
-
-    //    public async Task Consume(ConsumeContext<AgendaEntity> context)
-    //    {
-    //        await _agendaService.AgendarHorarioAsync(context.Message.IdPaciente,context.Message.IdAgenda);
-
-    //        var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:NotifyAgendamento"));
-
-    //        await endpoint.Send(context.Message!);
-    //    }
-    //}
-
-    public class AgendarHorarioCreateConsumer(IAgendaServices agendaService, IBus _bus) : IConsumer<AgendamentoRequestDTO>
+    public class AgendarHorarioCreateConsumer(IAgendaServices agendaService, IBus _bus, IMapper _mapper) : IConsumer<AgendamentoRequestDTO>
     {
         private readonly IAgendaServices _agendaService = agendaService;
 
@@ -37,17 +23,24 @@ namespace HealthMed.Agendamentos.Consumer
             await _agendaService.AgendarHorarioAsync(agendaMessage.IdPaciente, agendaMessage.IdAgenda);
 
             var agenda = await _agendaService.GetById(agendaMessage.IdAgenda);
-            
-            // Criar o DTO para notificação
-            var notificationMessage = new AgendamentoRequestDTO
+
+            if (agenda.isMedicoNotificado)
+                return;
+
+            NotifyDto notifyDto = new NotifyDto
             {
-                IdAgenda = agendaMessage.IdAgenda,
-                IdPaciente = agendaMessage.IdPaciente
+                Agenda = _mapper.Map<ReadAgendaDTO>(agenda),
+                Subject = "Agendamento Solicitado com Sucesso!",
+                Content = "O Agendamento Foi Solicitado com Sucesso!",
+                Receiver = "Medico"
             };
 
-            // Enviar para a fila de notificação
-            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:NotifyAgendamento"));
-            await endpoint.Send(agenda);
+            var endpoint = await _bus.GetSendEndpoint(new Uri($"queue:Notify"));
+
+            await endpoint.Send(notifyDto);
+
+            agenda.isMedicoNotificado = true;
+            await _agendaService.UpdateAsync(agenda);
         }
     }
 

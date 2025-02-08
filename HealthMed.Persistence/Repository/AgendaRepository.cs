@@ -1,4 +1,5 @@
-﻿using HealthMed.Data;
+﻿using System.Net.Mail;
+using HealthMed.Data;
 using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
@@ -15,6 +16,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         {
             var agenda = await db.Agenda
                 .Include(a => a.Medico)
+                .Include(a => a.Paciente) // Carrega o paciente associado
                 .FirstOrDefaultAsync(a => a.IdAgenda == idAgenda);
 
             if (agenda == null)
@@ -35,8 +37,8 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             db.Agenda.Update(agenda);
             await db.SaveChangesAsync();
 
-            Task.Delay(1);
-
+            await Task.Delay(1);
+            
             return new ResultadoAgendamentoDTO(true, "Agendamento realizado com sucesso!");
         }
         catch (Exception ex)
@@ -45,6 +47,27 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         }
 
     }
+
+    public async Task<ResultadoAgendamentoDTO> ConfirmaAgendamento(int idAgenda, bool isAceiteAgendamento)
+    {
+        var agenda = await db.Agenda
+               .Include(a => a.Medico)
+               .Include(a => a.Paciente) // Carrega o paciente associado
+               .FirstOrDefaultAsync(a => a.IdAgenda == idAgenda);
+
+        if (agenda == null)
+            return new ResultadoAgendamentoDTO(false, "Agenda não encontrada.");
+
+        agenda.isConfirmacaoMedico = isAceiteAgendamento;
+
+        db.Agenda.Update(agenda);
+        await db.SaveChangesAsync();
+
+        await Task.Delay(1);
+
+        return new ResultadoAgendamentoDTO(true, "Agendamento confirmado com sucesso!");
+    }
+   
 
     public async Task<bool> ValidaAgendamentoExistenteAsync(AgendaEntity agenda)
     {
@@ -59,19 +82,20 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         {
             if (await ValidaAgendamentoExistenteAsync(agenda))
             {
-                throw new InvalidOperationException("Esse horário já está marcado."); // Exceção com mensagem clara
+                throw new InvalidOperationException("Esse horário já está marcado."); 
             }
 
             await db.Agenda.AddAsync(agenda);
-            await db.SaveChangesAsync(); // Tornar assíncrono para evitar deadlocks
+            await db.SaveChangesAsync(); 
 
             return await db.Agenda
                 .Include(a => a.Medico)
+                .Include(a => a.Paciente) // Carrega o paciente associado
                 .FirstOrDefaultAsync(a => a.IdAgenda == agenda.IdAgenda);
         }
         catch (Exception ex)
         {
-            throw new Exception($"Erro ao criar a agenda: {ex.Message}", ex); // Propagar erro com mais contexto
+            throw new Exception($"Erro ao criar a agenda: {ex.Message}", ex); 
         }
     }
 
@@ -88,12 +112,12 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         return true;
     }
 
-    //public async Task<IEnumerable<AgendaEntity>> Get() => await db.Agenda.ToListAsync();
 
     public async Task<IEnumerable<ReadAgendaDTO>> Get()
     {
         var agendas = await db.Agenda
             .Include(a => a.Medico) // Carrega os dados do médico
+            .Include(a => a.Paciente) // Carrega o paciente associado
             .ToListAsync();
 
         return agendas.Select(a => new ReadAgendaDTO
@@ -108,7 +132,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
                 Nome = a.Medico.Nome,
                 CRM = a.Medico.CRM,
                 Especialidade = a.Medico.Especialidade
-            } : null
+            } : new ReadMedicoResumoDTO()
         }).ToList();
     }
 
@@ -116,6 +140,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     {
         var entity = await db.Agenda
             .Include(a => a.Medico) // Carrega o médico associado
+            .Include(a => a.Paciente) // Carrega o paciente associado
             .FirstOrDefaultAsync(a => a.IdAgenda == id); ;
         if (entity == null)
         {
@@ -139,7 +164,29 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
 
         return await db.Agenda
             .Include(a => a.Medico)
+            .Include(a => a.Paciente) // Carrega o paciente associado
             .FirstOrDefaultAsync(a => a.IdAgenda == updatedAgenda.IdAgenda);
 
+    }
+
+    public async Task<ResultadoAgendamentoDTO> CancelarAgendamentoAsync(int idAgenda, string JustificativaCancelamento)
+    {
+        var agenda = await db.Agenda
+              .Include(a => a.Medico)
+              .Include(a => a.Paciente) // Carrega o paciente associado
+              .FirstOrDefaultAsync(a => a.IdAgenda == idAgenda);
+
+        if (agenda == null)
+            return new ResultadoAgendamentoDTO(false, "Agenda não encontrada.");
+
+        agenda.isConfirmacaoMedico = false;
+        agenda.JustificativaCancelamento = JustificativaCancelamento;
+
+        db.Agenda.Update(agenda);
+        await db.SaveChangesAsync();
+
+        await Task.Delay(1);
+
+        return new ResultadoAgendamentoDTO(true, "Agendamento cancelado com sucesso!");
     }
 }

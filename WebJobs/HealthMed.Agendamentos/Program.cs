@@ -20,10 +20,9 @@ var builder = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, se
 
     services.AddMassTransit(x =>
     {
-        x.AddConsumer<AgendamentoCreateConsumer>();
-        x.AddConsumer<AgendamentoUpdateConsumer>();
-        x.AddConsumer<AgendamentoDeleteConsumer>();
         x.AddConsumer<AgendarHorarioCreateConsumer>();
+        x.AddConsumer<CancelarAgendamentoPacienteConsumer>();
+        x.AddConsumer<ConfirmarAgendamentoConsumer>();
         x.UsingRabbitMq((context, cfg) =>
         {
             cfg.Host(new Uri(servidor), "/", h =>
@@ -31,30 +30,26 @@ var builder = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, se
                 h.Username(usuario);
                 h.Password(senha);
             });
-
-            cfg.ReceiveEndpoint("CreateAgendamento", e =>
-            {
-                e.ConfigureConsumer<AgendamentoCreateConsumer>(context);
-            });
-
-            cfg.ReceiveEndpoint("UpdateAgendamento", e =>
-            {
-                e.ConfigureConsumer<AgendamentoUpdateConsumer>(context);
-            });
-
-            cfg.ReceiveEndpoint("DeleteAgendamento", e =>
-            {
-                e.ConfigureConsumer<AgendamentoDeleteConsumer>(context);
-            });
             
              cfg.ReceiveEndpoint("CreateAgendarHorario", e =>
              {
                  e.ConfigureConsumer<AgendarHorarioCreateConsumer>(context);
              });
+            
+            cfg.ReceiveEndpoint("CancelarAgendamento", e =>
+             {
+                 e.ConfigureConsumer<CancelarAgendamentoPacienteConsumer>(context);
+             });
+
+            cfg.ReceiveEndpoint("ConfirmarAgendamentoMedico", e =>
+            {
+                e.ConfigureConsumer<ConfirmarAgendamentoConsumer>(context);
+            });
 
             cfg.ConfigureEndpoints(context);
         });
     });
+    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
     services.AddScoped<HealthMedContext>();
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HealthMed.Data.DTO
 {
@@ -14,5 +9,6 @@ namespace HealthMed.Data.DTO
         public int IdAgenda { get; set; }
         public DateTime HorarioDisponivel { get; set; }
         public int IdMedico { get; set; }
+        public decimal ValorConsulta { get; set; }
     }
 }

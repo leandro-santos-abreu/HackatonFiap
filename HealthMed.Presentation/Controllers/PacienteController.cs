@@ -41,8 +41,9 @@ public class PacienteController(IPacienteServices pacienteServices, IMapper _map
 
         var result = await pacienteServices.Create(paciente);
 
-        return result ? CreatedAtAction(nameof(Get), new { id = paciente.IdPaciente }, paciente) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
+        ReadPacienteDTO pacienteRetorno = _mapper.Map<ReadPacienteDTO>(paciente);
 
+        return result ? Ok(pacienteRetorno) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
     }
 
     [HttpPut()]

@@ -45,6 +45,14 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
         return Ok(result);
     }
 
+    [HttpGet("Especialidade")]
+    //[Authorize(Roles = "paciente,medico")]
+    public async Task<IActionResult> GetbyEspecialidade(string Especialidade)
+    {
+        var result = await medicoServices.GetByEspecialidade(Especialidade);
+        return Ok(result);
+    }
+
     [HttpPost]
     //[Authorize(Roles = "medico")]
     public async Task<IActionResult> CreateMedico([FromBody] CreateMedicoDTO medicodto)
@@ -58,7 +66,9 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
 
         var result = await medicoServices.Create(medico);
 
-        return result ? CreatedAtAction(nameof(Get), new { id = medico.IdMedico }, medico) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
+        ReadMedicoResumoDTO medicoRetorno = _mapper.Map<ReadMedicoResumoDTO>(medico);
+
+        return result ? Ok(medicoRetorno) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
 
     }
 

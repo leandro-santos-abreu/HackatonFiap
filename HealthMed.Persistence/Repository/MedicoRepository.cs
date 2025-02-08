@@ -85,4 +85,15 @@ public class MedicoRepository(HealthMedContext db) : IMedicoRepository
             return false;
         }
     }
+
+    public async Task<MedicoEntity> GetByEspecialidade(string Especialidade)
+    {
+        var entity = await db.Medico.FirstOrDefaultAsync(x => x.Especialidade.Contains(Especialidade));
+        if (entity == null)
+        {
+            throw new KeyNotFoundException($"Nenhum registro encontrado com a Especialidade: {Especialidade}");
+        }
+
+        return entity;
+    }
 }

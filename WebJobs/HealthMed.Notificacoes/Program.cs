@@ -1,7 +1,7 @@
 using HealthMed.Application.Contracts;
 using HealthMed.Application.Services;
 using HealthMed.Data;
-using HealthMed.Notificacoes.NotificacoesConsumers;
+using HealthMed.Notificacoes.NotificationsConsumers;
 using HealthMed.Persistence.Contract;
 using HealthMed.Persistence.Repository;
 using MassTransit;
@@ -25,7 +25,7 @@ var builder = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, se
                 h.Password(senha);
             });
 
-            cfg.ReceiveEndpoint("NotifyAgendamento", e =>
+            cfg.ReceiveEndpoint("Notify", e =>
             {
                 e.ConfigureConsumer<EmailNotificationConsumer>(context);
             });
