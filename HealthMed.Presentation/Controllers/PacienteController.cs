@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using HealthMed.Application.Contracts;
-using HealthMed.Application.Services;
 using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using Microsoft.AspNetCore.Authorization;

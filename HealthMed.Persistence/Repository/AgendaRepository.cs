@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using HealthMed.Data;
+﻿using HealthMed.Data;
 using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;

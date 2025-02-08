@@ -1,5 +1,4 @@
 ﻿using MeuProjeto.Domain.Validations;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HealthMed.Domain.Entity;
