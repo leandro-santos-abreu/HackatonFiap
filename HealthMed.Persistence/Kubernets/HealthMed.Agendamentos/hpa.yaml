@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: healthmed-agendamentos-api-hpa # Nome do HPA
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: healthmed-agendamentos-api # Nome do Deployment que será escalado
+  minReplicas: 1 # Número mínimo de réplicas
+  maxReplicas: 10 # Número máximo de réplicas
+  targetCPUUtilizationPercentage: 30

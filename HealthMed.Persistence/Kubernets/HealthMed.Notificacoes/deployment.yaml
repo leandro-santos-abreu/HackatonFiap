@@ -1,0 +1,26 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthmed-notificacoes-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthmed-notificacoes-api
+  template:
+    metadata:
+      labels:
+        app: healthmed-notificacoes-api
+    spec:
+      containers:
+      - name: healthmed-notificacoes-api
+        image: onlyoutsider/healthmedapi-notificacoes:latest
+        ports:
+        - containerPort: 1002
+        resources:
+          requests:
+            cpu: "100m"     # 100 millicores (0.1 vCPU)
+            memory: "200Mi" # 200 MiB of memory
+          limits:
+            cpu: "500m"     # 500 millicores (0.5 vCPU)
+            memory: "500Gi"   # 500 MiB of memory

@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+    name: healthmed-api-notificacoes-service
+spec:
+    selector:
+        app: healthmed-notificacoes-api
+    ports:
+    - protocol: TCP
+      port: 1002
+      targetPort: 1002
+    type: ClusterIP

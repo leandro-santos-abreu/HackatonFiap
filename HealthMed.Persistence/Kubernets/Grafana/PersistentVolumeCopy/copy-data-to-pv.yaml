@@ -1,0 +1,16 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: copy-data-to-pv
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: [ "sleep", "3600" ]  # This is just to keep the pod running for some time
+    volumeMounts:
+    - name: grafana-storage
+      mountPath: /etc/grafana  # The mount path inside the container
+  volumes:
+  - name: grafana-storage
+    persistentVolumeClaim:
+      claimName: grafana-pvc

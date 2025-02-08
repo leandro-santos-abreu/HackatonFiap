@@ -1,0 +1,21 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+data:
+  config.ini: |
+    [paths]
+    provisioning = /etc/config/provisioning
+
+    [server]
+    enable_gzip = true
+
+    [users]
+    default_theme = dark
+
+    [dashboards]
+    default_home_dashboard_uid = cdt97ombs8wsgc
+  dashboards: |
+    <dashboard JSON content here>
+  provisioning: |
+    <provisioning config content here>

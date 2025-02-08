@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+    name: healthmed-api-agendamentos-service
+spec:
+    selector:
+        app: healthmed-agendamentos-api
+    ports:
+    - protocol: TCP
+      port: 1001
+      targetPort: 1001
+    type: ClusterIP

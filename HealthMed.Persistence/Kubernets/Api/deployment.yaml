@@ -1,0 +1,51 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthmed-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthmed-api
+  template:
+    metadata:
+      labels:
+        app: healthmed-api
+    spec:
+      containers:
+      - name: healthmed-api
+        image: onlyoutsider/healthmedapi:latest
+        resources:
+          requests:
+            cpu: "100m"     # 100 millicores (0.1 vCPU)
+            memory: "200Mi" # 200 MiB of memory
+          limits:
+            cpu: "500m"     # 500 millicores (0.5 vCPU)
+            memory: "500Gi"   # 500 MiB of memory
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        volumeMounts:
+        - name: certificate-volume
+          mountPath: /app/certificate.pfx
+          subPath: certificate.pfx
+        env:
+        - name: ASPNETCORE_URLS
+          valueFrom:
+            configMapKeyRef:
+              name: healthmed-api-config  # Reference ConfigMap
+              key: ASPNETCORE_URLS          # Reference the specific key in ConfigMap
+        - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+          valueFrom:
+            configMapKeyRef:
+              name: healthmed-api-config  # Reference ConfigMap
+              key: ASPNETCORE_Kestrel__Certificates__Default__Path  # Reference the specific key in ConfigMap
+        - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+          valueFrom:
+            secretKeyRef:
+              name: healthmed-api-secret  # Reference Secret
+              key: ASPNETCORE_Kestrel__Certificates__Default__Password  # Reference specific key in Secret
+      volumes:
+      - name: certificate-volume
+        secret:
+          secretName: certificate-secret

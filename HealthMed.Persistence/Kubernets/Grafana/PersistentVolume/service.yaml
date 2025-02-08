@@ -1,0 +1,13 @@
+﻿apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: grafana-pv
+spec:
+  capacity:
+    storage: 5Gi  # Specify the storage size
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain  # Keep data even if the PVC is deleted
+  hostPath:
+    path: "/mnt/data/grafana"
+    type: DirectoryOrCreate

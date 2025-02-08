@@ -1,0 +1,10 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: healthmed-api-database-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce  # The volume should be mounted as read-write by a single node
+  resources:
+    requests:
+      storage: 10Gi  # Match this with the capacity of your PV

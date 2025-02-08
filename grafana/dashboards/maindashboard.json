@@ -357,7 +357,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "(100 * rate(process_cpu_seconds_total{job=\"PostTechFiap.Api\"}[1m]))",
+          "expr": "(100 * rate(process_cpu_seconds_total{job=\"healthmed-api\"}[1m]))",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,

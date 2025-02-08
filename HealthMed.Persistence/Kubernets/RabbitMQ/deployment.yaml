@@ -1,0 +1,32 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: masstransit/rabbitmq
+        ports:
+        - containerPort: 15672  # RabbitMQ Management UI
+        - containerPort: 5672   # RabbitMQ Broker Port
+        volumeMounts:
+        - name: rabbitmq-data
+          mountPath: /var/lib/rabbitmq
+        - name: rabbitmq-logs
+          mountPath: /var/log/rabbitmq
+      volumes:
+      - name: rabbitmq-data
+        persistentVolumeClaim:
+          claimName: rabbitmq-data-pvc  # PVC for RabbitMQ data
+      - name: rabbitmq-logs
+        persistentVolumeClaim:
+          claimName: rabbitmq-logs-pvc  # PVC for RabbitMQ logs

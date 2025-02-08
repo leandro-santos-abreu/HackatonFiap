@@ -1,0 +1,19 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+    name: healthmed-api-service
+spec:
+    selector:
+        app: healthmed-api
+    ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 8080
+      nodePort: 32000
+    - protocol: TCP
+      name: https
+      port: 443
+      targetPort: 8443
+      nodePort: 32001
+    type: NodePort

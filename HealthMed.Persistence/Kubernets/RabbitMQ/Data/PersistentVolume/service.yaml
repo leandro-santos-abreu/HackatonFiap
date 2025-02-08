@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rabbitmq-data-pv
+spec:
+  capacity:
+    storage: 5Gi  # Adjust the size as needed
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/rabbitmq  # Path on the node where data will be stored
+    type: Directory

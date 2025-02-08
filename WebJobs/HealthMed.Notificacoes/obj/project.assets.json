@@ -4644,23 +4644,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CaioMaciente\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Outsider\\.nuget\\packages\\": {},
+    "F:\\VSSdks\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\HealthMed.Notificacoes.csproj",
+      "projectUniqueName": "F:\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\HealthMed.Notificacoes.csproj",
       "projectName": "HealthMed.Notificacoes",
-      "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\HealthMed.Notificacoes.csproj",
-      "packagesPath": "C:\\Users\\CaioMaciente\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\obj\\",
+      "projectPath": "F:\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\HealthMed.Notificacoes.csproj",
+      "packagesPath": "C:\\Users\\Outsider\\.nuget\\packages\\",
+      "outputPath": "F:\\HackatonFiap\\WebJobs\\HealthMed.Notificacoes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "F:\\VSSdks\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\CaioMaciente\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Outsider\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4669,24 +4669,23 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj"
+            "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj": {
+              "projectPath": "F:\\HackatonFiap\\HealthMed.Application\\HealthMed.Application.csproj"
             },
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
+            "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj": {
+              "projectPath": "F:\\HackatonFiap\\HealthMed.Data\\HealthMed.Data.csproj"
             },
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj"
+            "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj": {
+              "projectPath": "F:\\HackatonFiap\\HealthMed.Domain\\HealthMed.Domain.csproj"
             },
-            "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
-              "projectPath": "C:\\Users\\CaioMaciente\\Source\\Repos\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj"
+            "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj": {
+              "projectPath": "F:\\HackatonFiap\\HealthMed.Persistence\\HealthMed.Persistence.csproj"
             }
           }
         }
@@ -4753,7 +4752,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "message": "O pacote 'BCrypt.Net 0.1.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net8.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
       "libraryId": "BCrypt.Net",
       "targetGraphs": [
         "net8.0"

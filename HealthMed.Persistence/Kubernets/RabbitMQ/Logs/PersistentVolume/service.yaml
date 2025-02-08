@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rabbitmq-logs-pv
+spec:
+  capacity:
+    storage: 2Gi  # Adjust the size as needed
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/logs/rabbitmq  # Path on the node where logs will be stored
+    type: Directory

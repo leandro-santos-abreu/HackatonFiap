@@ -1,0 +1,38 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthmed-api-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthmed-api-database
+  template:
+    metadata:
+      labels:
+        app: healthmed-api-database
+    spec:
+      containers:
+      - name: healthmed-api-database
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+        - containerPort: 1433
+        env:
+          - name: SA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: healthmed-api-database-secret   # The name of the Secret
+                key: SA_PASSWORD               # The key to reference from the Secret
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: MSSQL_PID
+            value: "Developer"
+          - name: MSSQL_TCP_PORT
+            value: "1433"
+        volumeMounts:
+          - name: mssql-data
+            mountPath: /var/opt/mssql  # The default path where SQL Server stores its data
+      volumes:
+        - name: mssql-data
+          persistentVolumeClaim:
+            claimName: healthmed-api-database-pvc
