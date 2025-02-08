@@ -575,3 +575,4 @@ C:\Users\CaioMaciente\source\repos\HackatonFiap\HealthMed.Presentation\obj\Debug
 C:\Users\CaioMaciente\source\repos\HackatonFiap\HealthMed.Presentation\obj\Debug\net8.0\HealthMed.Presentation.pdb
 C:\Users\CaioMaciente\source\repos\HackatonFiap\HealthMed.Presentation\obj\Debug\net8.0\HealthMed.Presentation.genruntimeconfig.cache
 C:\Users\CaioMaciente\source\repos\HackatonFiap\HealthMed.Presentation\obj\Debug\net8.0\ref\HealthMed.Presentation.dll
+F:\HackatonFiap\HealthMed.Presentation\bin\Debug\net8.0\AutoMapper.dll

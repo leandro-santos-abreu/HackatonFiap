@@ -11,7 +11,6 @@ public class LoginRequest
    
     public string CRM { get; set; }
 
-    [Required(ErrorMessage = "Login obrigatório")]
     public string Login { get; set; }
 
     [Required]

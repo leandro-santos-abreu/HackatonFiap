@@ -8,8 +8,9 @@ public class PacienteProfile : Profile
 {
     public PacienteProfile()
     {
-           CreateMap<CreatePacienteDTO, PacienteEntity>().ReverseMap();
+        CreateMap<CreatePacienteDTO, PacienteEntity>().ReverseMap();
         CreateMap<UpdatePacienteDTO, PacienteEntity>();
         CreateMap<PacienteEntity, UpdatePacienteDTO>();
+        CreateMap<PacienteEntity, ReadPacienteDTO>();
     }
 }

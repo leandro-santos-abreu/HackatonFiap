@@ -39,6 +39,15 @@ namespace HealthMed.Data.Migrations
                     b.Property<int?>("IdPaciente")
                         .HasColumnType("int");
 
+                    b.Property<string>("JustificativaCancelamento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ValorConsulta")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("isConfirmacaoMedico")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("isHorarioMarcado")
                         .HasColumnType("bit");
 

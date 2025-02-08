@@ -10,5 +10,6 @@ public class AgendaProfile : Profile
         CreateMap<CreateAgendaDTO, AgendaEntity>().ReverseMap();
         CreateMap<UpdateAgendaDTO, AgendaEntity>();
         CreateMap<AgendaEntity, UpdateAgendaDTO>();
+        CreateMap<AgendaEntity, ReadAgendaDTO>();
     }
 }
