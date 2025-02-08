@@ -64,13 +64,13 @@ namespace HealthMed.Presentation
             services.AddScoped<IMedicoRepository, MedicoRepository>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddScoped<IAgendaRepository, AgendaRepository>();
-            services.AddScoped<IAutenticationRepository, AutenticationRepository>();
-
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IMedicoServices, MedicoServices>();
             services.AddScoped<IPacienteServices, PacienteServices>();
             services.AddScoped<IAgendaServices, AgendaServices>();
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Configuração da autenticação JWT
             var secretKey = Configuration.GetSection("Jwt")["Key"] ?? string.Empty;
@@ -123,6 +123,7 @@ namespace HealthMed.Presentation
 
             //app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseMetricServer("/metrics");
 

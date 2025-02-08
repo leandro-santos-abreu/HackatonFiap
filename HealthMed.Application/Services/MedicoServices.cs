@@ -58,7 +58,7 @@ public class MedicoServices(IMedicoRepository medicoRepository) : IMedicoService
         {
             updatedMedico.Senha = BCrypt.Net.BCrypt.HashPassword(updatedMedico.Senha);
 
-            return medicoRepository.Update(updatedMedico);
+            return medicoRepository.Update( updatedMedico);
         }
         catch (Exception ex)
         {

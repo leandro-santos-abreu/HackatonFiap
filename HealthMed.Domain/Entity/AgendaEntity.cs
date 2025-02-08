@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthMed.Domain.Entity;
 
@@ -10,7 +11,12 @@ public class AgendaEntity
     public DateTime HorarioDisponivel { get; set; }
     public bool isHorarioMarcado { get; set; } = false;
     public bool isMedicoNotificado { get; set; } = false;
-        
+
+    [ForeignKey("Medico")]
     public int IdMedico { get; set; }
-   public virtual MedicoEntity Medico { get; set; }
+    public MedicoEntity Medico { get; set; }
+
+    [ForeignKey("Paciente")]
+    public int? IdPaciente { get; set; }  // Pode ser null se o horário estiver livre
+    public PacienteEntity? Paciente { get; set; }
 }

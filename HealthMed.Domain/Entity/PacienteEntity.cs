@@ -21,10 +21,12 @@ public class PacienteEntity
     [CpfValidation(ErrorMessage = "CPF inválido.")]
     public string CPF { get; set; }
 
-    [Required]
-    [EmailAddress(ErrorMessage = "E-mail inválido.")]
+    [Required , EmailAddress(ErrorMessage = "E-mail inválido.")]
     public string Email { get; set; }
     [Required]
     public string Senha { get; set; }
-   
+
+    // Relacionamento 1:N com Agenda (um paciente pode marcar vários horários)
+    public List<AgendaEntity> Agendamentos { get; set; } = new();
+
 }

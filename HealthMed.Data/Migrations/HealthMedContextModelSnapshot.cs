@@ -18,9 +18,6 @@ namespace HealthMed.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.1")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -39,7 +36,7 @@ namespace HealthMed.Data.Migrations
                     b.Property<int>("IdMedico")
                         .HasColumnType("int");
 
-                    b.Property<int>("MedicoIdMedico")
+                    b.Property<int?>("IdPaciente")
                         .HasColumnType("int");
 
                     b.Property<bool>("isHorarioMarcado")
@@ -50,7 +47,9 @@ namespace HealthMed.Data.Migrations
 
                     b.HasKey("IdAgenda");
 
-                    b.HasIndex("MedicoIdMedico");
+                    b.HasIndex("IdMedico");
+
+                    b.HasIndex("IdPaciente");
 
                     b.ToTable("Agenda");
                 });
@@ -72,6 +71,10 @@ namespace HealthMed.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Especialidade")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -122,12 +125,29 @@ namespace HealthMed.Data.Migrations
             modelBuilder.Entity("HealthMed.Domain.Entity.AgendaEntity", b =>
                 {
                     b.HasOne("HealthMed.Domain.Entity.MedicoEntity", "Medico")
-                        .WithMany()
-                        .HasForeignKey("MedicoIdMedico")
+                        .WithMany("Agendas")
+                        .HasForeignKey("IdMedico")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HealthMed.Domain.Entity.PacienteEntity", "Paciente")
+                        .WithMany("Agendamentos")
+                        .HasForeignKey("IdPaciente")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("Medico");
+
+                    b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("HealthMed.Domain.Entity.MedicoEntity", b =>
+                {
+                    b.Navigation("Agendas");
+                });
+
+            modelBuilder.Entity("HealthMed.Domain.Entity.PacienteEntity", b =>
+                {
+                    b.Navigation("Agendamentos");
                 });
 #pragma warning restore 612, 618
         }
