@@ -2,11 +2,10 @@
 using HealthMed.Data.DTO;
 using HealthMed.Domain.Entity;
 using HealthMed.Persistence.Contract;
-using MassTransit;
 
 
 namespace HealthMed.Application.Services;
-public class AgendaServices(IAgendaRepository agendaRepository, IBus bus) : IAgendaServices
+public class AgendaServices(IAgendaRepository agendaRepository) : IAgendaServices
 {   
     public async Task<ResultadoAgendamentoDTO> AgendarHorarioAsync(int idPaciente, int idAgenda)
     {
@@ -44,6 +43,7 @@ public class AgendaServices(IAgendaRepository agendaRepository, IBus bus) : IAge
                 IsHorarioMarcado = createdAgenda.isHorarioMarcado,
                 IsMedicoNotificado = createdAgenda.isMedicoNotificado,
                 IdMedico = createdAgenda.IdMedico,
+                ValorConsulta = createdAgenda.ValorConsulta,
                 Medico = createdAgenda.Medico != null ? new ReadMedicoResumoDTO
                 {
                     Nome = createdAgenda.Medico.Nome,

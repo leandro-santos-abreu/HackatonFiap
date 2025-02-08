@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HealthMed.Data.DTO;
+using HealthMed.Domain.Dto;
 using HealthMed.Domain.Entity;
 
 namespace HealthMed.Application.Profiles;

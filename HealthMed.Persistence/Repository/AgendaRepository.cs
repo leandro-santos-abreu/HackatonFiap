@@ -34,7 +34,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             agenda.Paciente = paciente;
 
             db.Agenda.Update(agenda);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             await Task.Delay(1);
             
@@ -58,6 +58,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             return new ResultadoAgendamentoDTO(false, "Agenda não encontrada.");
 
         agenda.isConfirmacaoMedico = isAceiteAgendamento;
+        agenda.isHorarioMarcado = isAceiteAgendamento;
 
         db.Agenda.Update(agenda);
         await db.SaveChangesAsync();
@@ -125,7 +126,9 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             HorarioDisponivel = a.HorarioDisponivel,
             IsHorarioMarcado = a.isHorarioMarcado,
             IsMedicoNotificado = a.isMedicoNotificado,
+            ValorConsulta = a.ValorConsulta,
             IdMedico = a.IdMedico,
+            IdPaciente = a.IdPaciente!.Value,
             Medico = a.Medico != null ? new ReadMedicoResumoDTO
             {
                 Nome = a.Medico.Nome,
@@ -179,6 +182,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             return new ResultadoAgendamentoDTO(false, "Agenda não encontrada.");
 
         agenda.isConfirmacaoMedico = false;
+        agenda.isHorarioMarcado = false;
         agenda.JustificativaCancelamento = JustificativaCancelamento;
 
         db.Agenda.Update(agenda);

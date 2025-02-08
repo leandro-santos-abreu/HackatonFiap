@@ -64,7 +64,7 @@ jobs:
       with:
         files: '**/appsettings.Test.json'
       env:
-        Settings.RunningCI: true
+        ConnectionStrings.RunningCI: true
         
     - name: Run tests
       run: dotnet test HealthMed_Hackaton.sln --no-build --verbosity normal

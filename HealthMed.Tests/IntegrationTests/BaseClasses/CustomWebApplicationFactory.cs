@@ -45,13 +45,13 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Startup>, IAsyn
     {
         builder.UseEnvironment("Test");
 
-        if (!_configuration.GetValue<bool>("Settings:RunningCI"))
+        if (!_configuration.GetValue<bool>("ConnectionStrings:RunningCI"))
             builder.ConfigureAppConfiguration((context, config) =>
             {
                 var connectionString = _connectionStringTcs.Task.Result;
                 config.AddInMemoryCollection(new[]
                 {
-                new KeyValuePair<string, string>("Settings:DbConnectionString", connectionString)
+                new KeyValuePair<string, string>("ConnectionStrings:HealthMedConnection", connectionString)
                 });
             });
 
@@ -104,7 +104,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Startup>, IAsyn
 
     public async Task InitializeAsync()
     {
-        if (!_configuration.GetValue<bool>("Settings:RunningCI"))
+        if (!_configuration.GetValue<bool>("ConnectionStrings:RunningCI"))
         {
             Console.WriteLine("Starting SQL Server container...");
 
@@ -139,7 +139,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Startup>, IAsyn
 
     public override async ValueTask DisposeAsync()
     {
-        if (!_configuration.GetValue<bool>("Settings:RunningCI"))
+        if (!_configuration.GetValue<bool>("ConnectionStrings:RunningCI"))
             return;
 
         await _container.StopAsync();

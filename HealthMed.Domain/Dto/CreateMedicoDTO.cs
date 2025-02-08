@@ -1,14 +1,14 @@
 ﻿using MeuProjeto.Domain.Validations;
 using System.ComponentModel.DataAnnotations;
 
-namespace HealthMed.Data.DTO;
+namespace HealthMed.Domain.Dto;
 public class CreateMedicoDTO
 {
     [Required(ErrorMessage = "O necessário atribuir o Nome.")]
     [StringLength(500)]
     public string Nome { get; set; }
 
-    [Required(ErrorMessage ="É necessário preencher o CPF")]
+    [Required(ErrorMessage = "É necessário preencher o CPF")]
     [CpfValidation(ErrorMessage = "CPF inválido.")]
     public string CPF { get; set; }
 
@@ -19,9 +19,9 @@ public class CreateMedicoDTO
     [Required(ErrorMessage = "É necessário atribuir uma Especialidade Médica.")]
     public string Especialidade { get; set; }
 
-    [Required , EmailAddress(ErrorMessage = "E-mail inválido.")]
+    [Required, EmailAddress(ErrorMessage = "E-mail inválido.")]
     public string Email { get; set; }
-    
-    [Required] 
+
+    [Required]
     public string Senha { get; set; }
 }

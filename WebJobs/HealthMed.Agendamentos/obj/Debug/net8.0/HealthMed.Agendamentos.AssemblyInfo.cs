@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HealthMed.Agendamentos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c95762710448ceabaf409de22f4a6dc986240fd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db0f52480965eb35e136fc50f7f839f0e4ba7079")]
 [assembly: System.Reflection.AssemblyProductAttribute("HealthMed.Agendamentos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HealthMed.Agendamentos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
