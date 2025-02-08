@@ -471,3 +471,4 @@ C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Notificacoes\o
 C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Notificacoes\obj\Debug\net8.0\HealthMed.Notificacoes.pdb
 C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Notificacoes\obj\Debug\net8.0\HealthMed.Notificacoes.genruntimeconfig.cache
 C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Notificacoes\obj\Debug\net8.0\ref\HealthMed.Notificacoes.dll
+F:\HackatonFiap\WebJobs\HealthMed.Notificacoes\bin\Debug\net8.0\AutoMapper.dll

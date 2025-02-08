@@ -11,22 +11,7 @@ public class AgendaServices(IAgendaRepository agendaRepository, IBus bus) : IAge
     public async Task<ResultadoAgendamentoDTO> AgendarHorarioAsync(int idPaciente, int idAgenda)
     {
 
-        var result = await agendaRepository.AgendarHorarioAsync(idPaciente, idAgenda);
-
-        if (result.Sucesso)
-        {
-            var agenda = await agendaRepository.GetById(idAgenda);
-            if (agenda != null && agenda.Medico != null && !agenda.isMedicoNotificado)
-            {
-                // Enviar notificação para a fila do RabbitMQ
-                var endpoint = await bus.GetSendEndpoint(new Uri("queue:NotifyAgendamento"));
-                await endpoint.Send(agenda);
-            }
-
-        }
-
-
-        return result;
+        return await agendaRepository.AgendarHorarioAsync(idPaciente, idAgenda);
     }
 
     public async Task<ResultadoAgendamentoDTO> CancelarAgendamento(int idAgenda, string JustificativaCancelamento)
@@ -64,7 +49,7 @@ public class AgendaServices(IAgendaRepository agendaRepository, IBus bus) : IAge
                     Nome = createdAgenda.Medico.Nome,
                     CRM = createdAgenda.Medico.CRM,
                     Especialidade = createdAgenda.Medico.Especialidade
-                } : null
+                } : new ReadMedicoResumoDTO()
             };
         }
         catch (Exception ex)
@@ -114,7 +99,7 @@ public class AgendaServices(IAgendaRepository agendaRepository, IBus bus) : IAge
                 Nome = updateAgenda.Medico.Nome,
                 CRM = updateAgenda.Medico.CRM,
                 Especialidade = updateAgenda.Medico.Especialidade
-            } : null
+            } : new ReadMedicoResumoDTO()
         };
 
     }

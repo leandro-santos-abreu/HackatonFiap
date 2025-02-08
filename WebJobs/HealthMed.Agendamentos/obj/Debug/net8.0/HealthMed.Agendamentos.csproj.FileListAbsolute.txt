@@ -345,3 +345,4 @@ C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Agendamentos\o
 C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Agendamentos\obj\Debug\net8.0\HealthMed.Agendamentos.pdb
 C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Agendamentos\obj\Debug\net8.0\HealthMed.Agendamentos.genruntimeconfig.cache
 C:\Users\CaioMaciente\source\repos\HackatonFiap\WebJobs\HealthMed.Agendamentos\obj\Debug\net8.0\ref\HealthMed.Agendamentos.dll
+F:\HackatonFiap\WebJobs\HealthMed.Agendamentos\bin\Debug\net8.0\AutoMapper.dll

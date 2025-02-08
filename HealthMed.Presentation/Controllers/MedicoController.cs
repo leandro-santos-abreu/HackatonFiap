@@ -66,7 +66,9 @@ public class MedicoController(IMedicoServices medicoServices, IMapper _mapper) :
 
         var result = await medicoServices.Create(medico);
 
-        return result ? CreatedAtAction(nameof(Get), new { id = medico.IdMedico }, medico) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
+        ReadMedicoResumoDTO medicoRetorno = _mapper.Map<ReadMedicoResumoDTO>(medico);
+
+        return result ? Ok(medicoRetorno) : BadRequest(new { Message = "Todos os campos devem ser preenchidos." });
 
     }
 

@@ -16,6 +16,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         {
             var agenda = await db.Agenda
                 .Include(a => a.Medico)
+                .Include(a => a.Paciente) // Carrega o paciente associado
                 .FirstOrDefaultAsync(a => a.IdAgenda == idAgenda);
 
             if (agenda == null)
@@ -36,7 +37,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             db.Agenda.Update(agenda);
             await db.SaveChangesAsync();
 
-            Task.Delay(1);
+            await Task.Delay(1);
             
             return new ResultadoAgendamentoDTO(true, "Agendamento realizado com sucesso!");
         }
@@ -51,6 +52,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     {
         var agenda = await db.Agenda
                .Include(a => a.Medico)
+               .Include(a => a.Paciente) // Carrega o paciente associado
                .FirstOrDefaultAsync(a => a.IdAgenda == idAgenda);
 
         if (agenda == null)
@@ -61,7 +63,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         db.Agenda.Update(agenda);
         await db.SaveChangesAsync();
 
-        Task.Delay(1);
+        await Task.Delay(1);
 
         return new ResultadoAgendamentoDTO(true, "Agendamento confirmado com sucesso!");
     }
@@ -88,6 +90,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
 
             return await db.Agenda
                 .Include(a => a.Medico)
+                .Include(a => a.Paciente) // Carrega o paciente associado
                 .FirstOrDefaultAsync(a => a.IdAgenda == agenda.IdAgenda);
         }
         catch (Exception ex)
@@ -109,12 +112,12 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         return true;
     }
 
-    //public async Task<IEnumerable<AgendaEntity>> Get() => await db.Agenda.ToListAsync();
 
     public async Task<IEnumerable<ReadAgendaDTO>> Get()
     {
         var agendas = await db.Agenda
             .Include(a => a.Medico) // Carrega os dados do médico
+            .Include(a => a.Paciente) // Carrega o paciente associado
             .ToListAsync();
 
         return agendas.Select(a => new ReadAgendaDTO
@@ -129,7 +132,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
                 Nome = a.Medico.Nome,
                 CRM = a.Medico.CRM,
                 Especialidade = a.Medico.Especialidade
-            } : null
+            } : new ReadMedicoResumoDTO()
         }).ToList();
     }
 
@@ -137,6 +140,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     {
         var entity = await db.Agenda
             .Include(a => a.Medico) // Carrega o médico associado
+            .Include(a => a.Paciente) // Carrega o paciente associado
             .FirstOrDefaultAsync(a => a.IdAgenda == id); ;
         if (entity == null)
         {
@@ -160,6 +164,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
 
         return await db.Agenda
             .Include(a => a.Medico)
+            .Include(a => a.Paciente) // Carrega o paciente associado
             .FirstOrDefaultAsync(a => a.IdAgenda == updatedAgenda.IdAgenda);
 
     }
@@ -168,6 +173,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
     {
         var agenda = await db.Agenda
               .Include(a => a.Medico)
+              .Include(a => a.Paciente) // Carrega o paciente associado
               .FirstOrDefaultAsync(a => a.IdAgenda == idAgenda);
 
         if (agenda == null)
@@ -179,7 +185,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
         db.Agenda.Update(agenda);
         await db.SaveChangesAsync();
 
-        Task.Delay(1);
+        await Task.Delay(1);
 
         return new ResultadoAgendamentoDTO(true, "Agendamento cancelado com sucesso!");
     }
