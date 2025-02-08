@@ -97,11 +97,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -202,11 +203,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -279,7 +281,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -348,7 +350,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -356,8 +358,8 @@
             "uid": "8rTXXfF4z"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "(100 * rate(process_cpu_seconds_total{job=\"healthmed-api\"}[1m]))",
+          "editorMode": "builder",
+          "expr": "rate(process_cpu_seconds_total{instance=\"healthmed-api-service:443\"}[1m])",
           "fullMetaSearch": false,
           "hide": true,
           "includeNullMetadata": true,
@@ -372,7 +374,7 @@
             "type": "prometheus",
             "uid": "8rTXXfF4z"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "expr": "sum(rate(node_cpu_seconds_total{mode=\"system\"}[1m]))",
           "hide": true,
           "instant": false,
