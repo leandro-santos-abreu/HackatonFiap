@@ -167,3 +167,26 @@ jobs:
           app-name: 'HealthMed-Notificacoes'
           slot-name: 'Production'
           package: .
+          
+  DockerHub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Build & Push API Image
+        run: |
+          docker build -t onlyoutsider/healthmedapi .
+          docker push onlyoutsider/healthmedapi:latest
+      - name: Build & Push Agendamentos Image
+        run: |
+          docker build -t onlyoutsider/healthmedapi-agendamentos -f WebJobs/HealthMed.Agendamentos/Dockerfile .
+          docker push onlyoutsider/healthmedapi-agendamentos:latest
+      - name: Build & Push Notificacoes Image
+        run: |
+          docker build -t onlyoutsider/healthmedapi-notificacoes -f WebJobs/HealthMed.Notificacoes/Dockerfile .
+          docker push onlyoutsider/healthmedapi-notificacoes:latest
