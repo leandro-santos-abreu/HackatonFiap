@@ -128,7 +128,7 @@ public class AgendaRepository(HealthMedContext db) : IAgendaRepository
             IsMedicoNotificado = a.isMedicoNotificado,
             ValorConsulta = a.ValorConsulta,
             IdMedico = a.IdMedico,
-            IdPaciente = a.IdPaciente!.Value,
+            IdPaciente = a.IdPaciente,
             Medico = a.Medico != null ? new ReadMedicoResumoDTO
             {
                 Nome = a.Medico.Nome,

@@ -18,7 +18,7 @@ services:
       - ASPNETCORE_URLS=http://*:8080;https://*:8443
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/src/https-certificatecertificate.pfx
       - ASPNETCORE_Kestrel__Certificates__Default__Password=admin
-      - ASPNETCORE_ENVIRONMENT=Development 
+      - ASPNETCORE_ENVIRONMENT=Production 
   healthmed.api.emailnotificacaoconsumer:
     image: ${DOCKER_REGISTRY-}webjobs/healthmed.notificacoes/healthmed.notificacoes
     container_name: HealthMed.Api.EmailNotificacaoConsumer

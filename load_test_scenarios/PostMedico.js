@@ -8,13 +8,15 @@ export let PostContactFailRate = new Rate('post_contact_fail_rate');
 export let PostContactSuccessRate = new Rate('post_contact_success_rate');
 export let PostContactReqs = new Counter('post_contact_reqs');
 
-export default function PostContact() {
+export default function PostMedico() {
 
     let payload = JSON.stringify({
-        name: 'John Doe',
-        ddd: '27',
-        email: 'john.doe@example.com',
-        telephone: '999624224'
+        Nome: 'John Doe',
+        CRM: 'SP123456',
+        Email: 'john.doe@example.com',
+        Especialidade : 'Oftalmologista',
+		Senha: "123456",
+		CPF: "98805907081"
     });
 
     // Set headers (if necessary, like Content-Type for JSON)
@@ -23,7 +25,7 @@ export default function PostContact() {
     };
 
     // Send the POST request
-    let res = http.post('https://localhost:32001/api/Contact', payload, { headers: headers });
+    let res = http.post('https://localhost:32001/Medico', payload, { headers: headers });
 
     // Track metrics
     PostContactDuration.add(res.timings.duration); // Track the duration
